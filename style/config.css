@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    font-family: 'Bungee', cursive;
+    font-family: 'Concert One', cursive;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #FFD93B;
+    background-image: url('/img/background-config.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+
+    height: 100vh;
+}
+
+h1{
+    font-size: 50px;
+    margin: 50px 0;
+}
+
+#abas-config{
+    background-color: #FFD93B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 500px;
+    border: solid 3px black;
+}
+
+#abas-config > span{
+    background-color: black;
+    width: 2px;
+    height: 80%;
+}
+
+#abas-config > div{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+p{
+    font-size: 20px;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pagina > div{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 500px;
+    margin: 15px;
+}
+
+.div-linha{
+    display: flex;
+    width: 250px;
+}
+
+input[type="number"]{
+    font-size: 20px;
+    height: 40px;
+    width: 50px;
+    text-align: center;
+}
+
+.radio-ind p{
+    margin-left: 30px;
+}
+
+.valor-numerico{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+#pontos-rodada > div{
+    justify-content: space-between;
+    width: 320px;
+    margin: 5px;
+}
+
+#pontos-rodada > div > div{
+    display: flex;
+}
+
+#pontos-rodada input[type="number"]{
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+
+#pontos-rodada p{
+    margin: 0px 10px;
+}
+
+#forma-pontuar > div{
+    width: 320px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 150px;
+}
+
+button{
+    padding: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+
+
