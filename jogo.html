@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Camimica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style/jogo.css">
 </head>
 <body>
+
+    <main>
+        <div>
+            <p id="nome-jogador">Nome Jogador</p>
+        </div>
+        <div id="div-central">
+            <div>
+                <p>Tipo</p>
+                <p id="palavra">Palavra</p>
+                <p>Pontos</p>
+            </div>
+
+            <div>
+                <div>
+                    <i class="fa-regular fa-clock fa-spin"></i>
+                    <span id="tempo">Tempo</span>
+                </div>
+
+                <div id="div-pulos">
+                    <button id="bt-pular">Pular</button>
+                    <p>Qtd Pulo</p>
+                </div>
+            </div>
+        </div>
+        <div id="div-lateral-dir">
+            <span><i class="fa-solid fa-gear fa-flip"></i></span>
+            <span><i class="fa-solid fa-bars fa-flip"></i></span>
+        </div>
+
+    </main>
     
 </body>
 <script src="js/jogo.js"></script>

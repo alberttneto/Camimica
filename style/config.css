@@ -117,12 +117,14 @@ input[type="number"]{
 footer{
     display: flex;
     justify-content: center;
-    position: relative;
-    bottom: 150px;
+    align-items: center;
 }
 
 button{
     padding: 10px;
+    position: relative;
+    bottom: 150px;
+    width: 100px;
 }
 
 button:hover{

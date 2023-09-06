@@ -1,31 +1,29 @@
 const parametroTimes = new URLSearchParams(window.location.search);
-const timesJSON = parametroTimes.get('dados'); // valor1
-console.log(timesJSON); 
-
-const listaPalavras = localStorage.getItem("listaPalavras");
-console.log(listaPalavras); 
+const timesJSON = parametroTimes.get('dados');
 
 
+const pontoRodada = document.getElementsByName("tipo-valor");
 
-const pontoRodada = document.querySelector('input[name="pontos-rodada"]');
-console.log(pontoRodada);
 for (const op of pontoRodada) {
     op.addEventListener("change", () => {
-        console.log(op);
+        const min = document.getElementById("ptRodadaMin");
+        if(op.value == "valorFixo"){
+            const min = document.getElementById("ptRodadaMin");
+            min.disabled = true;
+        }else{
+            min.disabled = false;
+        }
     });
-    
 }
 
 
-
-//const dadosConfig = new Config();
 const jogar = document.getElementById("play");
 
 jogar.addEventListener("click", () => {
 
     const ordemJg = document.querySelector('input[name="opOrdem"]:checked');
     const pontoMax = document.querySelector('input[name="ptMax"]');
-    const pontoRodada = document.querySelector('input[name="pontos-rodada"]:checked');
+    const pontoRodada = document.querySelector('input[name="tipo-valor"]:checked');
     const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
     const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
     const tipoPontuacao = document.querySelector('input[name="forma-pontuar"]:checked');
@@ -44,13 +42,7 @@ jogar.addEventListener("click", () => {
 
     const dadosConfig = new Config(ordemJg.value, pontoMax.value, pontoRodada.value, pontoRodadaMin.value, pontoRodadaMax.value, tipoPontuacao.value, tempoMax.value, qtdPulos.value);
 
-    console.log(dadosConfig);
-    
+    const parametroConsulta = encodeURIComponent(JSON.stringify(dadosConfig));
 
-
-
-    // dadosConfig.setOrdemJogo(ordemJg.value);
-
-
-
+    window.location.href = `jogo.html?times=${timesJSON}&config=${parametroConsulta}`;
 });
