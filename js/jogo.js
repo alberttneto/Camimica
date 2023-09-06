@@ -5,13 +5,54 @@ const configJSON = JSON.parse(parametroTimes.get('config')); // valor1
 console.log(timesJSON); 
 console.log(configJSON); 
 
-const listaPalavras = localStorage.getItem("listaPalavras");
-console.log(listaPalavras); 
+const tiposPalavras = localStorage.getItem("listaPalavras");
+console.log(tiposPalavras); 
+
+
+async function fetchData(palavras) {
+    try {
+
+        palavras = palavras.split(",");
+        listaPalavras = [];
+        
+        for (let i = 0; i < palavras.length; i++) {
+            const response = await fetch("palavras/"+ palavras[i]+"JSON.json");
+            const responseData = await response.json();
+            listaPalavras[i] = responseData
+        }
+
+        return listaPalavras;
+
+    } catch (error) {
+        console.error('Erro:', error);
+    }
+}
+
 
 
 // Configurações CSS
+const opConfig = document.getElementById("op-config");
+const iconConfig = document.querySelector(".fa-gear");
+
+opConfig.addEventListener("mouseenter", () => {
+    iconConfig.classList.add("fa-flip");
+});
+
+opConfig.addEventListener("mouseleave", () => {
+    iconConfig.classList.remove("fa-flip");
+});
 
 
+const opPlacar = document.getElementById("op-placar");
+const iconPlacar = document.querySelector(".fa-bars");
+
+opPlacar.addEventListener("mouseenter", () => {
+    iconPlacar.classList.add("fa-flip");
+});
+
+opPlacar.addEventListener("mouseleave", () => {
+    iconPlacar.classList.remove("fa-flip");
+});
 
 // Função que retorna a ordem dos times de forma aleatoria;
 function alteraOrdemJogadores(timesJSON){
@@ -47,4 +88,17 @@ if(configJSON.ordemJogo == "ordemAlt"){
     timesJSON = alteraOrdemJogadores(timesJSON);
 }
 
+const nomeJogador = document.getElementById("nome-jogador");
+const tipoPalavra = document.getElementById("tipo-palavra");
+nomeJogador.innerHTML = timesJSON[0].pessoas[0];
+// tipoPalavra.innerHTML = 
+
+fetchData(tiposPalavras).then((data) => {
+
+    console.log(data.length)
+    for (let i = 0; i < data.length; i++) {
+
+    }
+    indice = Math.floor(Math.random() * time2.length);
+});
 

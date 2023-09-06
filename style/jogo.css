@@ -87,6 +87,10 @@ main > div{
     border: solid 3px black;
 }
 
+#div-lateral-dir i{
+    cursor: pointer;
+}
+
 
 
 
