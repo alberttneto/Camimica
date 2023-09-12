@@ -145,7 +145,7 @@ fetchData(tiposPalavras).then((data) => {
     };
 
     sorteiaPalavra();
-
+    
     cronometro = setInterval(atualizarCronometro, 1000);
 
     campoPulos.innerHTML = "Pulos: " + configJSON.qtdMaxPulos;
