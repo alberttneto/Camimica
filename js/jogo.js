@@ -1,6 +1,6 @@
 
 const parametroTimes = new URLSearchParams(window.location.search);
-const timesJSON = JSON.parse(parametroTimes.get('times')); // valor1
+var timesJSON = JSON.parse(parametroTimes.get('times')); // valor1
 const configJSON = JSON.parse(parametroTimes.get('config')); // valor1
 console.log(timesJSON); 
 console.log(configJSON); 
@@ -54,6 +54,8 @@ opPlacar.addEventListener("mouseleave", () => {
     iconPlacar.classList.remove("fa-flip");
 });
 
+
+
 // Função que retorna a ordem dos times de forma aleatoria;
 function alteraOrdemJogadores(timesJSON){
 
@@ -62,8 +64,6 @@ function alteraOrdemJogadores(timesJSON){
     var novoTime1 = [];
     var novoTime2 = [];
     var indice;
-
-    console.log(timesJSON);
 
     const qtdPessoas = timesJSON[0].pessoas.length
 
@@ -80,6 +80,9 @@ function alteraOrdemJogadores(timesJSON){
         time2.splice(indice, 1);
     }
 
+    timesJSON[0].pessoas = novoTime1;
+    timesJSON[1].pessoas = novoTime2;
+
     return timesJSON;
 }
 
@@ -90,6 +93,7 @@ if(configJSON.ordemJogo == "ordemAlt"){
 
 
 // Cronometro
+const iconTempo = document.querySelector(".fa-clock");
 const campoTempo = document.getElementById("tempo");
 const tempo = configJSON.tempoMaximoAcerto.split(":");
 let cronometro;
@@ -98,6 +102,7 @@ let segundos = parseInt(tempo[1]);
 
 
 function atualizarCronometro() {
+    iconTempo.classList.add("fa-spin");
     segundos--;
   
     if (segundos == 0 && minutos > 0) {
@@ -105,6 +110,7 @@ function atualizarCronometro() {
       minutos--;
     }else if (minutos == 0 && segundos == 0){
         clearInterval(cronometro);
+        iconTempo.classList.remove("fa-spin");
     }
   
     const segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
@@ -119,9 +125,11 @@ const campoTipoPalavra = document.getElementById("tipo-palavra");
 const campoPalavra = document.getElementById("palavra");
 const campoPontuacao = document.getElementById("ponto-rodada");
 const campoPulos = document.getElementById("qtd-pulos");
+
 nomeJogador.innerHTML = timesJSON[0].pessoas[0];
+campoPulos.innerHTML = configJSON.qtdMaxPulos;
 
-
+var pulos = configJSON.qtdMaxPulos;
 
 fetchData(tiposPalavras).then((data) => {
 
@@ -146,9 +154,28 @@ fetchData(tiposPalavras).then((data) => {
 
     sorteiaPalavra();
 
-    cronometro = setInterval(atualizarCronometro, 1000);
+    const btPulo = document.getElementById("bt-pular")
+    btPulo.addEventListener("click", () => {
+        pulos--;
 
-    campoPulos.innerHTML = "Pulos: " + configJSON.qtdMaxPulos;
+        if (pulos >= 0){
+            sorteiaPalavra();
+            campoPulos.innerHTML = pulos;
+        } else{
+            // Error
+        }
+
+    })
+
+    document.getElementById("bt-iniciar").addEventListener("click", () => {
+        cronometro = setInterval(atualizarCronometro, 1000);
+        btPulo.setAttribute("disabled", "");
+    });
+
+
+
+
+
 });
 
 
