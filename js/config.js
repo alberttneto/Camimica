@@ -27,20 +27,12 @@ jogar.addEventListener("click", () => {
     const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
     const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
     const tipoPontuacao = document.querySelector('input[name="forma-pontuar"]:checked');
-    const tempoMax = document.querySelector('input[name="tempoMx"]');
-    const qtdPulos = document.querySelector('input[name="qtdPulos"]');
+    const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
+    const qtdPulos = document.querySelector('input[name="qtdPulos"]');    
 
-    console.log(ordemJg.value);
-    console.log(pontoMax.value);
-    console.log(pontoRodada.value);
-    console.log(pontoRodadaMax.value);
-    console.log(pontoRodadaMin.value);
-    console.log(tipoPontuacao.value);
-    console.log(tempoMax.value);
-    console.log(qtdPulos.value);
-    
+    console.log(tempoMax);
 
-    const dadosConfig = new Config(ordemJg.value, pontoMax.value, pontoRodada.value, pontoRodadaMin.value, pontoRodadaMax.value, tipoPontuacao.value, tempoMax.value, qtdPulos.value);
+    const dadosConfig = new Config(ordemJg.value, parseInt(pontoMax.value), pontoRodada.value, parseInt(pontoRodadaMin.value), parseInt(pontoRodadaMax.value), tipoPontuacao.value, tempoMax, parseInt(qtdPulos.value));
 
     const parametroConsulta = encodeURIComponent(JSON.stringify(dadosConfig));
 

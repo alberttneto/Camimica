@@ -106,12 +106,25 @@ input[type="number"]{
     font-size: 15px;
 }
 
-#pontos-rodada p{
+#pontos-rodada p, #tempoMax p{
     margin: 0px 10px;
 }
 
 #forma-pontuar > div{
     width: 320px;
+}
+
+
+#tempoMax > div{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 10px;
+}
+
+#tempoMax > div{
+    justify-content: flex-end;
+    width: 200px;
+    margin: 5px;
 }
 
 footer{
@@ -121,10 +134,12 @@ footer{
 }
 
 button{
-    padding: 10px;
+    /* padding: 100px; */
+    text-align: center;
     position: relative;
     bottom: 150px;
-    width: 100px;
+    width: 150px;
+    height: 100;
 }
 
 button:hover{

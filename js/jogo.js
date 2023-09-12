@@ -88,17 +88,67 @@ if(configJSON.ordemJogo == "ordemAlt"){
     timesJSON = alteraOrdemJogadores(timesJSON);
 }
 
+
+// Cronometro
+const campoTempo = document.getElementById("tempo");
+const tempo = configJSON.tempoMaximoAcerto.split(":");
+let cronometro;
+let minutos = parseInt(tempo[0]);
+let segundos = parseInt(tempo[1]);
+
+
+function atualizarCronometro() {
+    segundos--;
+  
+    if (segundos == 0 && minutos > 0) {
+      segundos = 59;
+      minutos--;
+    }else if (minutos == 0 && segundos == 0){
+        clearInterval(cronometro);
+    }
+  
+    const segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
+    const minutosFormatados = minutos < 10 ? "0" + minutos : minutos;
+  
+    campoTempo.textContent = `${minutosFormatados}:${segundosFormatados}`;
+}
+
+
 const nomeJogador = document.getElementById("nome-jogador");
-const tipoPalavra = document.getElementById("tipo-palavra");
+const campoTipoPalavra = document.getElementById("tipo-palavra");
+const campoPalavra = document.getElementById("palavra");
+const campoPontuacao = document.getElementById("ponto-rodada");
+const campoPulos = document.getElementById("qtd-pulos");
 nomeJogador.innerHTML = timesJSON[0].pessoas[0];
-// tipoPalavra.innerHTML = 
+
+
 
 fetchData(tiposPalavras).then((data) => {
 
-    console.log(data.length)
-    for (let i = 0; i < data.length; i++) {
+    function sorteiaPalavra(){
+        var indiceTipo, indicePalavra, tipoPalavra, pontos;
+        indiceTipo = Math.floor(Math.random() * data.length);
+        tipoPalavra = Object.keys(data[indiceTipo])[0]
+        campoTipoPalavra.innerHTML = tipoPalavra
+    
+        indicePalavra = Math.floor(Math.random() * data[indiceTipo][tipoPalavra].length);
+    
+        campoPalavra.innerHTML = data[indiceTipo][tipoPalavra][indicePalavra];
+    
+        if(configJSON.pontosRodadaAleatorio == "valorAlt"){
+            pontos =  Math.floor(Math.random() * (parseInt(configJSON.pontosPorRodadaMax) - parseInt(configJSON.pontosPorRodadaMin) + 1) + parseInt(configJSON.pontosPorRodadaMin));
+        } else{
+            pontos = parseInt(configJSON.pontosPorRodadaMax);
+        }
+    
+        campoPontuacao.innerHTML = "Pontuação: " + pontos;
+    };
 
-    }
-    indice = Math.floor(Math.random() * time2.length);
+    sorteiaPalavra();
+
+    cronometro = setInterval(atualizarCronometro, 1000);
+
+    campoPulos.innerHTML = "Pulos: " + configJSON.qtdMaxPulos;
 });
+
 

@@ -6,7 +6,7 @@ class Config{
     pontosPorRodadaMin = 1;
     pontosPorRodadaMax = 1;
     pontuaErrosAcertos = false;
-    tempoMaximoAcerto = 60;
+    tempoMaximoAcerto = "0:60";
     qtdMaxPulos = 0;
 
     constructor(ordemJogo, pontoMaximo, pontosRodadaAleatorio, pontosPorRodadaMin, pontosPorRodadaMax, pontuaErrosAcertos, tempoMaximoAcerto, qtdMaxPulos){

@@ -71,9 +71,17 @@
                         <p>Pontos com erros e acertos</p>
                     </div>
                 </div>
-                <div class="valor-numerico">
+                <div class="valor-numerico" id="tempoMax">
                     <h2>Tempo máximo para acerto</h2>
-                    <input type="number" name="tempoMx" id="tempoMx" value="60">
+                    <div>
+                        <p>Minutos</p>
+                        <input type="number" name="tempoMinutos" id="tempoMinutos" min="0" max="4" value="0">
+                    </div>
+                    <div>
+                        <p>Segundos</p>
+                        <input type="number" name="tempoSegundos" id="tempoSegundos" min="0" max="60" value="60">
+                    </div>
+
                 </div>
                 <div class="valor-numerico">
                     <h2>Quantidade máxima de pulos</h2>
