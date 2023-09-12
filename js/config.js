@@ -30,7 +30,7 @@ jogar.addEventListener("click", () => {
     const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
     const qtdPulos = document.querySelector('input[name="qtdPulos"]');    
 
-    console.log(tempoMax);
+    console.log(timesJSON);
 
     const dadosConfig = new Config(ordemJg.value, parseInt(pontoMax.value), pontoRodada.value, parseInt(pontoRodadaMin.value), parseInt(pontoRodadaMax.value), tipoPontuacao.value, tempoMax, parseInt(qtdPulos.value));
 
