@@ -8,7 +8,7 @@ console.log(timesJSON);
 const tiposPalavras = localStorage.getItem("listaPalavras");
 console.log(tiposPalavras); 
 
-
+//Lendo arquivos com as palavras
 async function fetchData(palavras) {
     try {
 
@@ -27,8 +27,6 @@ async function fetchData(palavras) {
         console.error('Erro:', error);
     }
 }
-
-
 
 // Configurações CSS
 const opConfig = document.getElementById("op-config");
@@ -84,10 +82,26 @@ function alteraOrdemJogadores(timesJSON){
     return timesJSON;
 }
 
-
 if(configJSON.ordemJogo == "ordemAlt"){
     timesJSON = alteraOrdemJogadores(timesJSON);
 }
+
+// Inserindo informações no placar
+const placar = document.getElementById("placar");
+
+for (let i = 0; i < qtdTimes; i++) {
+    const div = document.createElement("div");
+    const spanTime = document.createElement("span");
+    const spanPontos = document.createElement("span");
+
+    spanTime.innerHTML = timesJSON[i].nome + ": ";
+    spanPontos.innerHTML = timesJSON[i].pontos;
+    spanPontos.classList.add("span-pontos");
+    div.appendChild(spanTime);
+    div.appendChild(spanPontos);
+    placar.appendChild(div);
+}
+
 
 
 const iconTempo = document.querySelector(".fa-clock");
@@ -99,6 +113,7 @@ let segundos = parseInt(tempo[1]);
 
 campoTempo.textContent = minutos + ":" + segundos;
 
+const spanPontos = document.getElementsByClassName("span-pontos");
 const nomeJogador = document.getElementById("nome-jogador");
 const campoTipoPalavra = document.getElementById("tipo-palavra");
 const campoPalavra = document.getElementById("palavra");
@@ -221,6 +236,7 @@ fetchData(tiposPalavras).then((data) => {
 
     iconAcertou.addEventListener("click", () => {
         timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos += pontos;
+        spanPontos[(indiceTime - 1 + qtdTimes)%qtdTimes].innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos;
         modalPontuar.classList.add("ocultar");
         btIniciar.classList.remove("ocultar");
         btParar.classList.add("ocultar");
@@ -234,6 +250,7 @@ fetchData(tiposPalavras).then((data) => {
                 
                 if(i != (indiceTime - 1 + qtdTimes)%qtdTimes){
                     timesJSON[i].pontos += pontos;
+                    spanPontos[i].innerHTML = timesJSON[i].pontos
                 }
                 
             }
