@@ -41,27 +41,36 @@ h1{
     margin-bottom: 50px;
 }
 
-#nomes-times{
+#forma-times{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
     padding: 30px;
     height: 350px;
     width: 500px;
     border: solid 3px black;
     overflow: auto;
-
 }
 
-#nomes-times > div{
+#forma-times > div{
     display: flex;
     flex-flow: column;
     text-align: center;
-    margin: 20px;
+    margin: 10px 0px;
 }
 
-#nomes-times > div > input{
+#forma-times > div > input{
     padding-left: 15px;
     margin-top: 3px;
     text-align: center;
     font-size: 20px;
+    width: 400px;
+}
+
+.nome-time{
+    margin-bottom: 5px;
+    background-color: #cfcfaf;
 }
 
 footer{

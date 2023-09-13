@@ -34,6 +34,17 @@ main > div{
     border: solid 3px black;
 }
 
+#placar{
+    background-color: #FFD93B;
+    margin: 80px;
+    padding: 30px;
+    border: solid 3px black;
+}
+
+#placar > h4{
+    font-size: 40px;
+}
+
 #div-central{
     display: flex;
     flex-flow: column;
@@ -54,11 +65,6 @@ main > div{
     padding: 10px;
 }
 
-/* #tempo{
-    border: solid 3px black;
-    padding: 5px;
-} */
-
 #div-pulos{
     margin: 20px;
     display: flex;
@@ -66,13 +72,12 @@ main > div{
 }
 
 #bt-pular{
-    font-size: 36px;
+    background-color: #1b1e22;
+    color: yellow;
+    font-size: 28px;
     width: 130px;
     height: 50px;
-    background-color: #FFD93B;
     border-radius: 20px;
-
-
     margin-right: 5px;
 }
 
@@ -93,35 +98,66 @@ main > div{
     cursor: pointer;
 }
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
+.ocultar{
+    display: none;
+}
+
+.bt-iniciar-parar {
+    background-color: rgb(35, 233, 52);
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 3px;
+    font-weight: bold;
+    width: 200px;
+}
+
+#bt-parar{
+    background-color: red;
+    color: aliceblue;
+}
+
+#modal-pontuar{
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(3, 3, 3, 0.5); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: rgb(39, 36, 36);
-    margin: 15% auto;  /*15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; 
-    height: 40%;
-    color:black;
-  }
-
-.bt-iniciar {
-    margin: auto;
-    float: right;
-    font-weight: bold;
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
+#modal-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 15% auto;  /*15% from the top and centered */
+    padding: 20px;
+    border: 5px solid #12251a;
+    border-radius: 20px;
+    width: 40%; /* Could be more or less, depending on screen size */
+    color:black;
+}
 
+#modal-content > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#modal-content > div > div{
+    margin: 40px;
+}
+
+#modal-content p{
+    margin: 5px;
+}
+
+#modal-content i:hover{
+    cursor: pointer;
+}
+
+#time-jogou{
+    color: blue;
+}
 

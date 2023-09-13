@@ -16,6 +16,14 @@
     <main>
         <div>
             <p id="nome-jogador">Nome Jogador</p>
+            <div id="placar">
+                <h4>Placar</h4>
+                <div class="pontos-placar">
+                    <span>Time</span>
+                    <span>Pontos</span>
+                </div>
+
+            </div>
         </div>
         <div id="div-central">
             <div>
@@ -36,32 +44,32 @@
                 </div>
 
                 <div>
-                    <button id="bt-iniciar">Iniciar</button>
-                    <button class="bt-parar">Parar</button>
+                    <button id="bt-iniciar" class="bt-iniciar-parar">Iniciar</button>
+                    <button id="bt-parar" class="bt-iniciar-parar ocultar">Parar</button>
                 </div>
             </div>
         </div>
         <div id="div-lateral-dir">
             <span id="op-config"><i class="fa-solid fa-gear"></i></span>
-            <span id="op-placar"><i class="fa-solid fa-bars"></i></span>
+            <!-- <span id="op-placar"><i class="fa-solid fa-bars"></i></span> -->
         </div>
-
+    
     </main>
 
-    <section id="modalFim" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
+    <section id="modal-pontuar" class="ocultar">
+        <div id="modal-content">
+            <p>O time <span id="time-jogou">x</span> acertou a mimica?</p>
             <div>
-
-            </div>
-            <div>
-                <img src="" alt="">
-            </div>
-            <div>
-                <button class="bt-iniciar">Iniciar</button>
+                <div>
+                    <i class="fa-regular fa-square-check fa-2xl" style="color: #00f01c;"></i>
+                    <p>Acertou!</p>
+                </div>
+                <div>
+                    <i class="fa-regular fa-circle-xmark fa-2xl" style="color: #ff0000;"></i>
+                    <p>Errou!</p>
+                </div>
             </div>
         </div>
-      
     </section>
     
 </body>
