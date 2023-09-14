@@ -119,6 +119,7 @@ const campoTipoPalavra = document.getElementById("tipo-palavra");
 const campoPalavra = document.getElementById("palavra");
 const campoPontuacao = document.getElementById("ponto-rodada");
 const campoPulos = document.getElementById("qtd-pulos");
+const modalVencedor = document.getElementById("modal-vencedor");
 campoPulos.innerHTML = configJSON.qtdMaxPulos;
 
 var pulos = configJSON.qtdMaxPulos;
@@ -150,6 +151,11 @@ fetchData(tiposPalavras).then((data) => {
     
 
     function sorteiaPalavra(){
+
+        // Verifica se tem ganhador
+        if(fimDeJogo()){
+            modalVencedor.classList.remove("ocultar");
+        }
 
         if(!flagPulo){
 
@@ -198,7 +204,9 @@ fetchData(tiposPalavras).then((data) => {
     const iconAcertou = document.querySelector(".fa-square-check");
     const iconErrou = document.querySelector(".fa-circle-xmark");
     const nomeTimeJogou = document.getElementById("time-jogou");
-
+    const btReiniciar = document.getElementById("reiniciar");
+    const btNovoJogo = document.getElementById("novo-jogo");
+    
     btPulo.addEventListener("click", () => {
         pulos--;
 
@@ -234,6 +242,21 @@ fetchData(tiposPalavras).then((data) => {
         modalPontuar.classList.remove("ocultar");
     }
 
+    // Ganhador
+    function fimDeJogo(){
+        var ganhador;
+        var flagGanhador = 0;
+        const spanGanhador = document.getElementById("time-ganhador");
+        for (let i = 0; i < qtdTimes; i++) {
+            if(timesJSON[i].pontos >= configJSON.pontoMaximo){
+                ganhador = timesJSON[i].nome;
+                flagGanhador = 1;
+            }
+        }
+        spanGanhador.innerHTML = ganhador;
+        return flagGanhador;
+    }
+
     iconAcertou.addEventListener("click", () => {
         timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos += pontos;
         spanPontos[(indiceTime - 1 + qtdTimes)%qtdTimes].innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos;
@@ -261,6 +284,20 @@ fetchData(tiposPalavras).then((data) => {
         btPulo.disabled = false;
         sorteiaPalavra();
     });
+
+
+    btNovoJogo.addEventListener("click", () => {
+        window.location.href = "palavra.html"
+    });
+
+    btReiniciar.addEventListener("click", () => {
+        for (let i = 0; i < qtdTimes; i++) {
+            timesJSON[i].pontos = 0;
+            spanPontos[i].innerHTML = 0;
+        }
+        modalVencedor.classList.add("ocultar");
+    });
+
 
 });
 

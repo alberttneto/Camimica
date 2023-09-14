@@ -15,12 +15,12 @@
 
     <main>
         <div id="div-lateral-esq">
-            <div id="quem-joga">
+            <div id="quem-joga" class="abas-lateral-esq">
                 <p>Quem joga:</p>
                 <p id="nome-jogador">Nome Jogador</p>
             </div>
-            <div id="placar">
-                <h5>Placar</h5>
+            <div id="placar" class="abas-lateral-esq">
+                <p>Placar:</p>
                 <div class="pontos-placar">
                 </div>
             </div>
@@ -51,13 +51,11 @@
         </div>
         <div id="div-lateral-dir">
             <span id="op-config"><i class="fa-solid fa-gear"></i></span>
-            <!-- <span id="op-placar"><i class="fa-solid fa-bars"></i></span> -->
         </div>
-    
     </main>
 
-    <section id="modal-pontuar" class="ocultar">
-        <div id="modal-content">
+    <section id="modal-pontuar" class="modal-ap ocultar">
+        <div id="div-pontuar" class="modal-content">
             <p>O time <span id="time-jogou">x</span> acertou a mimica?</p>
             <div>
                 <div>
@@ -67,6 +65,24 @@
                 <div>
                     <i class="fa-regular fa-circle-xmark fa-2xl" style="color: #ff0000;"></i>
                     <p>Errou!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modal-vencedor" class="modal-ap ocultar">
+        <div id="vitoria" class="modal-content">
+            <div>
+                <img src="img/comemorando.png" alt="" srcset="">
+            </div>
+            <div id="vitoria-info">
+                <div>
+                    <p>O time <span id="time-ganhador">Time</span> ganhou!!</p>
+                    <i class="fa-solid fa-trophy fa-bounce fa-2xl" style="color: #e4b301;"></i>
+                </div>
+                <div id="botoes">
+                    <button id="reiniciar">Reiniciar</button>
+                    <button id="novo-jogo">Novo Jogo</button>
                 </div>
             </div>
         </div>
