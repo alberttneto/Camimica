@@ -1,12 +1,11 @@
 
+// Recebendo variaveis de outras paginas
 const parametroTimes = new URLSearchParams(window.location.search);
-var timesJSON = JSON.parse(parametroTimes.get('times')); // valor1
-const configJSON = JSON.parse(parametroTimes.get('config')); // valor1
-console.log(configJSON); 
-console.log(timesJSON); 
-
+var timesJSON = JSON.parse(parametroTimes.get('times'));
+const configJSON = JSON.parse(parametroTimes.get('config'));
 const tiposPalavras = localStorage.getItem("listaPalavras");
-console.log(tiposPalavras); 
+console.log(configJSON);
+
 
 //Lendo arquivos com as palavras
 async function fetchData(palavras) {
@@ -41,17 +40,6 @@ opConfig.addEventListener("mouseleave", () => {
 });
 
 
-// const iconPlacar = document.querySelector(".fa-bars");
-// const opPlacar = document.getElementById("op-placar");
-
-// opPlacar.addEventListener("mouseenter", () => {
-//     iconPlacar.classList.add("fa-flip");
-// });
-
-// opPlacar.addEventListener("mouseleave", () => {
-//     iconPlacar.classList.remove("fa-flip");
-// });
-
 // Função que retorna a ordem dos times de forma aleatoria;
 const qtdPessoas = timesJSON[0].pessoas.length;
 const qtdTimes = timesJSON.length;
@@ -85,6 +73,8 @@ function alteraOrdemJogadores(timesJSON){
 if(configJSON.ordemJogo == "ordemAlt"){
     timesJSON = alteraOrdemJogadores(timesJSON);
 }
+
+console.log(timesJSON);
 
 // Inserindo informações no placar
 const placar = document.getElementById("placar");
@@ -148,7 +138,8 @@ fetchData(tiposPalavras).then((data) => {
       
         campoTempo.textContent = `${minutosFormatados}:${segundosFormatados}`;
     }
-    
+
+    var indiceTipo, indicePalavra, tipoPalavra;
 
     function sorteiaPalavra(){
 
@@ -161,6 +152,7 @@ fetchData(tiposPalavras).then((data) => {
 
             minutos = parseInt(tempo[0]);
             segundos = parseInt(tempo[1]);
+
             nomeJogador.innerHTML = timesJSON[indiceTime].pessoas[indicePessoa];
 
             if(indiceTime == qtdTimes-1){
@@ -174,16 +166,18 @@ fetchData(tiposPalavras).then((data) => {
                 indicePessoa = 0;
             }
         }   
-
-        var indiceTipo, indicePalavra, tipoPalavra;
-
+         
         indiceTipo = Math.floor(Math.random() * data.length);
+        
         tipoPalavra = Object.keys(data[indiceTipo])[0]
         campoTipoPalavra.innerHTML = tipoPalavra
-    
+            
         indicePalavra = Math.floor(Math.random() * data[indiceTipo][tipoPalavra].length);
-    
+            
         campoPalavra.innerHTML = data[indiceTipo][tipoPalavra][indicePalavra];
+    
+
+
     
         if(configJSON.pontosRodadaAleatorio == "valorAlt"){
             pontos = Math.floor(Math.random() * (parseInt(configJSON.pontosPorRodadaMax) - parseInt(configJSON.pontosPorRodadaMin) + 1) + parseInt(configJSON.pontosPorRodadaMin));
@@ -200,12 +194,15 @@ fetchData(tiposPalavras).then((data) => {
     const btPulo = document.getElementById("bt-pular");
     const btIniciar = document.getElementById("bt-iniciar");
     const btParar = document.getElementById("bt-parar");
-    const modalPontuar = document.getElementById("modal-pontuar");
     const iconAcertou = document.querySelector(".fa-square-check");
     const iconErrou = document.querySelector(".fa-circle-xmark");
     const nomeTimeJogou = document.getElementById("time-jogou");
     const btReiniciar = document.getElementById("reiniciar");
     const btNovoJogo = document.getElementById("novo-jogo");
+    const opconfig = document.getElementById("op-config");
+    const fecharModalConfig = document.getElementById("fechar-modal-config");
+    const modalPontuar = document.getElementById("modal-pontuar");
+    const modalConfig = document.getElementById("modal-config");
     
     btPulo.addEventListener("click", () => {
         pulos--;
@@ -217,7 +214,6 @@ fetchData(tiposPalavras).then((data) => {
         } else{
             // Error
         }
-
     })
 
     btIniciar.addEventListener("click", () => {
@@ -285,7 +281,6 @@ fetchData(tiposPalavras).then((data) => {
         sorteiaPalavra();
     });
 
-
     btNovoJogo.addEventListener("click", () => {
         window.location.href = "palavra.html"
     });
@@ -298,6 +293,44 @@ fetchData(tiposPalavras).then((data) => {
         modalVencedor.classList.add("ocultar");
     });
 
+    const pontoRodada = document.getElementsByName("tipo-valor");
+
+    for (const op of pontoRodada) {
+        op.addEventListener("change", () => {
+            const min = document.getElementById("ptRodadaMin");
+            if(op.value == "valorFixo"){
+                const min = document.getElementById("ptRodadaMin");
+                min.disabled = true;
+            }else{
+                min.disabled = false;
+            }
+        });
+    }
+
+    const pontoMax = document.querySelector('input[name="ptMax"]');
+    const pontoRodadacheck = document.querySelector('input[name="tipo-valor"]:checked');
+    const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
+    const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
+    const tipoPontuacao = document.querySelector('input[name="forma-pontuar"]:checked');
+    const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
+    const qtdPulos = document.querySelector('input[name="qtdPulos"]');   
+
+    opconfig.addEventListener("click", () => {
+        modalConfig.classList.remove("ocultar");
+    });
+    
+    fecharModalConfig.addEventListener("click", () => {
+        minutos = parseInt(tempoMax.split(":")[0]);
+        segundos = parseInt(tempoMax.split(":")[1]);
+        console.log(tempoMax);
+        configJSON.pontoMaximo = pontoMax.value;
+        configJSON.pontosRodadaAleatorio = pontoRodadacheck.value;
+        configJSON.pontosPorRodadaMin = pontoRodadaMin.value;
+        configJSON.pontoPorRodadaMax = pontoRodadaMax.value;
+        configJSON.pontuaErrosAcertos = tipoPontuacao.value;
+        configJSON.qtdMaxPulos = qtdPulos.value;
+        modalConfig.classList.add("ocultar");
+    });
 
 });
 

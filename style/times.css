@@ -1,16 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    font-family: 'Bungee', cursive;
-    font-family: 'Concert One', cursive;
-    font-family: 'Poppins', sans-serif;
-}
-
 body{
-    background-image: url("/img/background-times.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url('/img/background-times.png');
 }
 
 main{
@@ -20,7 +9,6 @@ main{
     flex-flow: column;
     margin: 50px;
 }
-
 
 h1{
     font-size: 50px;

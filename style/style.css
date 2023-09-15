@@ -1,3 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    font-family: 'Bungee', cursive;
+    font-family: 'Concert One', cursive;
+    font-family: 'Poppins', sans-serif;
+}
+
 body{
     background-color: #FFD93B;
+    background-image: url('/img/background-padrao.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+button{
+    background-color: black;
+    color: #FFD93B;
+    border-radius: 10px;
 }
