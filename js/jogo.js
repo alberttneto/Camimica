@@ -37,6 +37,18 @@ opConfig.addEventListener("mouseleave", () => {
     iconConfig.classList.remove("fa-flip");
 });
 
+const opMute = document.getElementById("op-mute");
+const iconMute = document.querySelector(".fa-volume-xmark");
+
+opMute.addEventListener("mouseenter", () => {
+    iconMute.classList.add("fa-flip");
+});
+
+opMute.addEventListener("mouseleave", () => {
+    iconMute.classList.remove("fa-flip");
+});
+
+
 
 // Função que retorna a ordem dos times de forma aleatoria;
 const qtdPessoas = timesJSON[0].pessoas.length;
@@ -88,6 +100,8 @@ for (let i = 0; i < qtdTimes; i++) {
     placar.appendChild(div);
 }
 
+
+// Denificao de variaveis e constantes
 const iconTempo = document.querySelector(".fa-clock");
 const campoTempo = document.getElementById("tempo");
 var tempo = configJSON.tempoMaximoAcerto.split(":");
@@ -103,6 +117,10 @@ const campoPalavra = document.getElementById("palavra");
 const campoPontuacao = document.getElementById("ponto-rodada");
 const campoPulos = document.getElementById("qtd-pulos");
 const modalVencedor = document.getElementById("modal-vencedor");
+const audioTicTac = new Audio('audio/tictac.wav');
+const audioAlarm = new Audio('audio/alarm.wav');
+
+
 campoPulos.innerHTML = configJSON.qtdMaxPulos;
 
 var pulos = configJSON.qtdMaxPulos;
@@ -125,6 +143,11 @@ fetchData(tiposPalavras).then((data) => {
     
         }else if (minutos == 0 && segundos == 0){
             marcaPonto();
+            audioAlarm.play();
+            setTimeout(() => {
+                audioAlarm.pause();
+                audioAlarm.currentTime = 0;
+            }, 2000);
         }
       
         const segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
@@ -199,7 +222,7 @@ fetchData(tiposPalavras).then((data) => {
     const nomeTimeJogou = document.getElementById("time-jogou");
     const btReiniciar = document.getElementById("reiniciar");
     const btNovoJogo = document.getElementById("novo-jogo");
-    const opconfig = document.getElementById("op-config");
+    // const opconfig = document.getElementById("op-config");
     const fecharModalConfig = document.getElementById("fechar-modal-config");
     const modalPontuar = document.getElementById("modal-pontuar");
     const modalConfig = document.getElementById("modal-config");
@@ -221,10 +244,12 @@ fetchData(tiposPalavras).then((data) => {
         btPulo.setAttribute("disabled", "");
         btIniciar.classList.add("ocultar");
         btParar.classList.remove("ocultar");
+        audioTicTac.play();
     });
 
     btParar.addEventListener("click", () => {
         marcaPonto();
+
     });
 
     // Função recebe informação de qual time pontuou e salva ponto
@@ -236,6 +261,7 @@ fetchData(tiposPalavras).then((data) => {
         iconTempo.classList.remove("fa-spin");
         nomeTimeJogou.innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].nome;
         modalPontuar.classList.remove("ocultar");
+        audioTicTac.pause();
     }
 
     // Ganhador
@@ -309,7 +335,7 @@ fetchData(tiposPalavras).then((data) => {
     }
 
 
-    opconfig.addEventListener("click", () => {
+    opConfig.addEventListener("click", () => {
         modalConfig.classList.remove("ocultar");
     });
     
@@ -329,7 +355,7 @@ fetchData(tiposPalavras).then((data) => {
         configJSON.tempoMaximoAcerto = tempoMax;
         configJSON.pontuaErrosAcertos = tipoPontuacao.value;
         configJSON.pontoMaximo = pontoMax.value;
-        
+
         configJSON.pontosPorRodadaMin = pontoRodadaMin.value;
         configJSON.pontosPorRodadaMax = pontoRodadaMax.value;
         geraPontuaçãoPalavra();
@@ -339,6 +365,15 @@ fetchData(tiposPalavras).then((data) => {
         campoPulos.innerHTML = pulos;
         modalConfig.classList.add("ocultar");
     });
+
+    opMute.addEventListener("click", () => {
+        audioTicTac.muted = !audioTicTac.muted;
+    });
+
+    audioTicTac.addEventListener('ended', function() {
+        audioTicTac.currentTime = 0; // Volte para o início do áudio
+        audioTicTac.play(); // Inicie a reprodução novamente
+      });
 
 });
 
