@@ -1,0 +1,70 @@
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.hexagon{
+    background-color: #100816;
+    color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+
+    width: 400px;
+    height: 65%;
+    border-radius: 33px;
+
+}
+
+
+.hexagon::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: relative;
+    bottom: 47px;
+    border-left: 180px solid transparent; /* Lado esquerdo transparente */
+    border-right: 180px solid transparent; /* Lado direito transparente */
+    border-bottom: 50px solid #100816; /* Lado inferior (a cor define a cor do triângulo) */
+    border-radius: 100px;
+}
+
+.hexagon::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: relative;
+    top: 54px; 
+    border-left: 180px solid transparent; /* Lado esquerdo transparente */
+    border-right: 180px solid transparent; /* Lado direito transparente */
+    border-bottom: 50px solid #100816; /* Lado inferior (a cor define a cor do triângulo) */
+    border-radius: 50px;
+    transform: rotate(180deg);
+}
+
+.hexagon h1{
+    font-size: 60px;
+    border-bottom: solid 3px white;
+}
+
+.hexagon span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    margin-top: 48px;
+}
+
+button{
+    background-color: #2B3244;
+    color: white;
+    
+    font-size: 20px;
+    width: 150px;
+    height: 40px;
+}

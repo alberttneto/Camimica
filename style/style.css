@@ -15,7 +15,12 @@ body{
 }
 
 button{
-    background-color: black;
+    background-color: rgb(2, 2, 2);
     color: #FFD93B;
     border-radius: 10px;
+    padding: 10px;
+}
+
+button:hover{
+    cursor: pointer;
 }

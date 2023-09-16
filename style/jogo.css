@@ -64,13 +64,14 @@ main > div{
 }
 
 #bt-pular{
-    background-color: #1b1e22;
+    background-color: #050505;
     color: yellow;
     font-size: 28px;
     width: 130px;
     height: 50px;
     border-radius: 20px;
     margin-right: 5px;
+    padding: 0;
 }
 
 #div-lateral-dir{
@@ -258,7 +259,6 @@ main > div{
 #fechar-modal-config{
     font-size: 20px;
     position: fixed;
-    right: 600px;
     width: 55px;
     border: solid 2px #FFD93B;
     border-radius: 50px;

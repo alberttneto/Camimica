@@ -222,7 +222,6 @@ fetchData(tiposPalavras).then((data) => {
     const nomeTimeJogou = document.getElementById("time-jogou");
     const btReiniciar = document.getElementById("reiniciar");
     const btNovoJogo = document.getElementById("novo-jogo");
-    // const opconfig = document.getElementById("op-config");
     const fecharModalConfig = document.getElementById("fechar-modal-config");
     const modalPontuar = document.getElementById("modal-pontuar");
     const modalConfig = document.getElementById("modal-config");
