@@ -9,7 +9,7 @@
 
 body{
     background-color: #FFD93B;
-    background-image: url('/img/background-padrao.png');
+    background-image: url('../img/background-padrao.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
