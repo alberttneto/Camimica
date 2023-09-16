@@ -4,8 +4,6 @@ const parametroTimes = new URLSearchParams(window.location.search);
 var timesJSON = JSON.parse(parametroTimes.get('times'));
 const configJSON = JSON.parse(parametroTimes.get('config'));
 const tiposPalavras = localStorage.getItem("listaPalavras");
-console.log(configJSON);
-
 
 //Lendo arquivos com as palavras
 async function fetchData(palavras) {
@@ -74,8 +72,6 @@ if(configJSON.ordemJogo == "ordemAlt"){
     timesJSON = alteraOrdemJogadores(timesJSON);
 }
 
-console.log(timesJSON);
-
 // Inserindo informações no placar
 const placar = document.getElementById("placar");
 
@@ -92,14 +88,11 @@ for (let i = 0; i < qtdTimes; i++) {
     placar.appendChild(div);
 }
 
-
-
 const iconTempo = document.querySelector(".fa-clock");
 const campoTempo = document.getElementById("tempo");
-const tempo = configJSON.tempoMaximoAcerto.split(":");
-let cronometro;
-let minutos = parseInt(tempo[0]);
-let segundos = parseInt(tempo[1]);
+var tempo = configJSON.tempoMaximoAcerto.split(":");
+var minutos = parseInt(tempo[0]);
+var segundos = parseInt(tempo[1]);
 
 campoTempo.textContent = minutos + ":" + segundos;
 
@@ -116,7 +109,8 @@ var pulos = configJSON.qtdMaxPulos;
 var flagPulo = 0;
 var indiceTime = 0;
 var indicePessoa = 0;
-var pontos;
+var pontos = 0;
+let cronometro;
 
 fetchData(tiposPalavras).then((data) => {
 
@@ -139,6 +133,18 @@ fetchData(tiposPalavras).then((data) => {
         campoTempo.textContent = `${minutosFormatados}:${segundosFormatados}`;
     }
 
+    //Gera pontuação da mimica na rodada
+    function geraPontuaçãoPalavra(){
+
+        if(configJSON.pontosRodadaAleatorio == "valorAlt"){
+            pontos = Math.floor(Math.random() * (parseInt(configJSON.pontosPorRodadaMax) - parseInt(configJSON.pontosPorRodadaMin) + 1) + parseInt(configJSON.pontosPorRodadaMin));
+        } else{
+            pontos = parseInt(configJSON.pontosPorRodadaMax);
+        }
+
+        campoPontuacao.innerHTML = "Pontuação: " + pontos;
+    }
+
     var indiceTipo, indicePalavra, tipoPalavra;
 
     function sorteiaPalavra(){
@@ -147,6 +153,8 @@ fetchData(tiposPalavras).then((data) => {
         if(fimDeJogo()){
             modalVencedor.classList.remove("ocultar");
         }
+
+        tempo = configJSON.tempoMaximoAcerto.split(":");
 
         if(!flagPulo){
 
@@ -175,17 +183,9 @@ fetchData(tiposPalavras).then((data) => {
         indicePalavra = Math.floor(Math.random() * data[indiceTipo][tipoPalavra].length);
             
         campoPalavra.innerHTML = data[indiceTipo][tipoPalavra][indicePalavra];
-    
 
+        geraPontuaçãoPalavra();
 
-    
-        if(configJSON.pontosRodadaAleatorio == "valorAlt"){
-            pontos = Math.floor(Math.random() * (parseInt(configJSON.pontosPorRodadaMax) - parseInt(configJSON.pontosPorRodadaMin) + 1) + parseInt(configJSON.pontosPorRodadaMin));
-        } else{
-            pontos = parseInt(configJSON.pontosPorRodadaMax);
-        }
-    
-        campoPontuacao.innerHTML = "Pontuação: " + pontos;
         flagPulo = 0;
     };
 
@@ -299,36 +299,44 @@ fetchData(tiposPalavras).then((data) => {
         op.addEventListener("change", () => {
             const min = document.getElementById("ptRodadaMin");
             if(op.value == "valorFixo"){
-                const min = document.getElementById("ptRodadaMin");
                 min.disabled = true;
+                configJSON.pontosRodadaAleatorio = op.value
             }else{
                 min.disabled = false;
+                configJSON.pontosRodadaAleatorio = op.value
             }
         });
     }
 
-    const pontoMax = document.querySelector('input[name="ptMax"]');
-    const pontoRodadacheck = document.querySelector('input[name="tipo-valor"]:checked');
-    const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
-    const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
-    const tipoPontuacao = document.querySelector('input[name="forma-pontuar"]:checked');
-    const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
-    const qtdPulos = document.querySelector('input[name="qtdPulos"]');   
 
     opconfig.addEventListener("click", () => {
         modalConfig.classList.remove("ocultar");
     });
     
     fecharModalConfig.addEventListener("click", () => {
+
+        const tipoPontuacao = document.querySelector('input[name="forma-pontuar"]:checked');
+        const pontoMax = document.querySelector('input[name="ptMax"]');
+        const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
+        const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
+        const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
+        const qtdPulos = document.querySelector('input[name="qtdPulos"]');   
+
         minutos = parseInt(tempoMax.split(":")[0]);
-        segundos = parseInt(tempoMax.split(":")[1]);
-        console.log(tempoMax);
-        configJSON.pontoMaximo = pontoMax.value;
-        configJSON.pontosRodadaAleatorio = pontoRodadacheck.value;
-        configJSON.pontosPorRodadaMin = pontoRodadaMin.value;
-        configJSON.pontoPorRodadaMax = pontoRodadaMax.value;
+        segundos = parseInt(tempoMax.split(":")[1]);  
+        campoTempo.textContent = minutos + ":" + segundos;
+
+        configJSON.tempoMaximoAcerto = tempoMax;
         configJSON.pontuaErrosAcertos = tipoPontuacao.value;
+        configJSON.pontoMaximo = pontoMax.value;
+        
+        configJSON.pontosPorRodadaMin = pontoRodadaMin.value;
+        configJSON.pontosPorRodadaMax = pontoRodadaMax.value;
+        geraPontuaçãoPalavra();
+
         configJSON.qtdMaxPulos = qtdPulos.value;
+        pulos = qtdPulos.value;
+        campoPulos.innerHTML = pulos;
         modalConfig.classList.add("ocultar");
     });
 
