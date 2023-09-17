@@ -167,39 +167,55 @@ main > div{
     color: white;
     border: 2px solid #FFD93B;
     display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    padding: 10px 120px;
+    flex-flow: column;
     width: 50%;
-    height: 330px;
+    height: 400px;
 }
 
-#vitoria-info{
+#vitoria-titulo{
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: center;
     align-items: center;
 }
 
-#vitoria-info > div{
+#vitoria-info{
     display: flex;
+    flex-flow: row-reverse;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 130px;
 }
 
-#vitoria-info p, span{
+#vitoria-titulo p, span{
     margin: 0px;
     font-size: 35px;
     font-weight: bold;
 }
 
-#vitoria-info i{
-    margin-left: 15px;
+#vitoria i{
+    margin-left: 20px;
+}
+
+#vitoria-img{
+    position: relative;
+    animation: flutuar 2s infinite alternate;
+}
+
+@keyframes flutuar {
+    0% {
+      bottom: 0; /* Inicialmente na parte superior */
+    }
+    100% {
+      bottom: 30px; /* Após a animação, na parte inferior */
+    }
 }
 
 #botoes{
     display: flex;
     flex-flow: column;
-    margin-top: 30px;
 }
 
 #botoes button{
@@ -209,7 +225,7 @@ main > div{
     border-radius: 10px;
     font-size: 20px;
     width: 200px;
-    margin: 3px; 
+    margin: 8px; 
 }
 
 #time-ganhador{

@@ -39,7 +39,7 @@ main{
     width: 0;
     height: 0;
     position: relative;
-    top: 54px; 
+    top: 51px; 
     border-left: 180px solid transparent; /* Lado esquerdo transparente */
     border-right: 180px solid transparent; /* Lado direito transparente */
     border-bottom: 50px solid #100816; /* Lado inferior (a cor define a cor do triângulo) */
