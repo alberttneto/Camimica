@@ -38,7 +38,7 @@ opConfig.addEventListener("mouseleave", () => {
 });
 
 const opMute = document.getElementById("op-mute");
-const iconMute = document.querySelector(".fa-volume-xmark");
+const iconMute = document.getElementById("volume");
 
 opMute.addEventListener("mouseenter", () => {
     iconMute.classList.add("fa-flip");
@@ -233,14 +233,12 @@ fetchData(tiposPalavras).then((data) => {
             flagPulo = 1;
             campoPulos.innerHTML = pulos;
             sorteiaPalavra();
-        } else{
-            // Error
         }
     })
 
     btIniciar.addEventListener("click", () => {
         cronometro = setInterval(atualizarCronometro, 1000);
-        btPulo.setAttribute("disabled", "");
+        btPulo.classList.add("ocultar");
         btIniciar.classList.add("ocultar");
         btParar.classList.remove("ocultar");
         audioTicTac.play();
@@ -284,7 +282,7 @@ fetchData(tiposPalavras).then((data) => {
         modalPontuar.classList.add("ocultar");
         btIniciar.classList.remove("ocultar");
         btParar.classList.add("ocultar");
-        btPulo.disabled = false;
+        btPulo.classList.remove("ocultar");
         sorteiaPalavra();
     });
 
@@ -302,12 +300,12 @@ fetchData(tiposPalavras).then((data) => {
         modalPontuar.classList.add("ocultar");
         btIniciar.classList.remove("ocultar");
         btParar.classList.add("ocultar");
-        btPulo.disabled = false;
+        btPulo.classList.remove("ocultar");
         sorteiaPalavra();
     });
 
     btNovoJogo.addEventListener("click", () => {
-        window.location.href = "palavra.html"
+        window.location.href = "index.html"
     });
 
     btReiniciar.addEventListener("click", () => {
@@ -366,6 +364,14 @@ fetchData(tiposPalavras).then((data) => {
     });
 
     opMute.addEventListener("click", () => {
+
+        if(iconMute.classList.contains("fa-volume-high")){
+            iconMute.classList.remove("fa-volume-high");
+            iconMute.classList.add("fa-volume-xmark");
+        } else{
+            iconMute.classList.remove("fa-volume-xmark");
+            iconMute.classList.add("fa-volume-high");
+        }
         audioTicTac.muted = !audioTicTac.muted;
     });
 

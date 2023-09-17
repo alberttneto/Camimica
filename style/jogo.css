@@ -52,9 +52,13 @@ main > div{
     color: #FFD93B;
     border-radius: 20px;
     border: solid 5px white;
-    font-size: 100px;
-    margin: 20px 0px;
+    font-size: 58px;
+    margin: 10px 0px;
     padding: 10px;
+}
+
+#tipo-palavra{
+    margin: 0;
 }
 
 #div-pulos{
@@ -72,6 +76,11 @@ main > div{
     border-radius: 20px;
     margin-right: 5px;
     padding: 0;
+}
+
+.bt-pular-off{
+    background-color: #e7d384;
+    color: red;
 }
 
 #div-lateral-dir{
