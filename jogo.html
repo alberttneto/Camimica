@@ -27,7 +27,8 @@
             </div>
         </div>
         <div id="div-central">
-            <div>
+            <button id="mostrar-palavra">Mostrar palavra</button>
+            <div id="info-palavra" class="ocultar">
                 <p id="tipo-palavra"></p>
                 <p id="palavra"></p>
                 <p id="ponto-rodada"></p>
@@ -58,7 +59,7 @@
 
     <section id="modal-pontuar" class="modal-ap ocultar">
         <div id="div-pontuar" class="modal-content">
-            <p>O time <span id="time-jogou">x</span> acertou a mimica?</p>
+            <p>O time <span id="time-jogou" class="destaque"></span> acertou a mimica?</p>
             <div>
                 <div>
                     <i class="fa-regular fa-square-check fa-2xl" style="color: #00f01c;"></i>
@@ -69,6 +70,7 @@
                     <p>Errou!</p>
                 </div>
             </div>
+            <p>Proximo a jogar: <span id="proximo-jogador" class="destaque"></span></p>
         </div>
     </section>
 

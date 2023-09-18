@@ -186,6 +186,7 @@ fetchData(tiposPalavras).then((data) => {
 
             nomeJogador.innerHTML = timesJSON[indiceTime].pessoas[indicePessoa];
 
+
             if(indiceTime == qtdTimes-1){
                 indiceTime = 0;
                 indicePessoa++;
@@ -220,12 +221,15 @@ fetchData(tiposPalavras).then((data) => {
     const iconAcertou = document.querySelector(".fa-square-check");
     const iconErrou = document.querySelector(".fa-circle-xmark");
     const nomeTimeJogou = document.getElementById("time-jogou");
+    const nomeProximoJogador = document.getElementById("proximo-jogador");
     const btReiniciar = document.getElementById("reiniciar");
     const btNovoJogo = document.getElementById("novo-jogo");
     const fecharModalConfig = document.getElementById("fechar-modal-config");
     const modalPontuar = document.getElementById("modal-pontuar");
     const modalConfig = document.getElementById("modal-config");
-    
+    const buttonMostrarPalavra = document.getElementById("mostrar-palavra");
+    const infoPalavra = document.getElementById("info-palavra");
+
     btPulo.addEventListener("click", () => {
         pulos--;
 
@@ -257,6 +261,7 @@ fetchData(tiposPalavras).then((data) => {
         campoPulos.innerHTML = configJSON.qtdMaxPulos;
         iconTempo.classList.remove("fa-spin");
         nomeTimeJogou.innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].nome;
+        nomeProximoJogador.innerHTML = timesJSON[(indiceTime + qtdTimes)%qtdTimes].pessoas[(indicePessoa + qtdPessoas)%qtdPessoas];
         modalPontuar.classList.remove("ocultar");
         audioTicTac.pause();
     }
@@ -378,7 +383,12 @@ fetchData(tiposPalavras).then((data) => {
     audioTicTac.addEventListener('ended', function() {
         audioTicTac.currentTime = 0; // Volte para o início do áudio
         audioTicTac.play(); // Inicie a reprodução novamente
-      });
+    });
+
+    buttonMostrarPalavra.addEventListener("click", () => {
+        infoPalavra.classList.remove("ocultar");
+        buttonMostrarPalavra.classList.add("ocultar");
+    });
 
 });
 

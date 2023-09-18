@@ -16,9 +16,8 @@ main{
     text-align: center;
 
     width: 400px;
-    height: 65%;
+    height: 60%;
     border-radius: 33px;
-
 }
 
 
@@ -33,19 +32,19 @@ main{
     border-bottom: 50px solid #100816; /* Lado inferior (a cor define a cor do triângulo) */
     border-radius: 100px;
 }
-
+/* 
 .hexagon::after {
     content: "";
     width: 0;
     height: 0;
     position: relative;
     top: 51px; 
-    border-left: 180px solid transparent; /* Lado esquerdo transparente */
-    border-right: 180px solid transparent; /* Lado direito transparente */
-    border-bottom: 50px solid #100816; /* Lado inferior (a cor define a cor do triângulo) */
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-bottom: 50px solid #100816;
     border-radius: 50px;
     transform: rotate(180deg);
-}
+} */
 
 .hexagon h1{
     font-size: 60px;
@@ -67,4 +66,24 @@ button{
     font-size: 20px;
     width: 150px;
     height: 40px;
+}
+
+
+@media screen and (max-width: 530px){
+
+    .hexagon h1{
+        font-size: 38px;
+    }
+
+    .hexagon{
+        width: 300px;
+        height: 60%;
+        border-radius: 33px;
+    }
+
+    .hexagon::before{
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        bottom: 40px;
+    }
 }
