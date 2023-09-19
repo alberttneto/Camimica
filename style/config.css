@@ -132,5 +132,65 @@ button:hover{
     cursor: pointer;
 }
 
+@media screen and (max-width: 1180px) {
+   
+    main{
+        height: 100%;
+        width: 100%;
+    }
+
+    body{
+        background-image: none;
+    }
+
+    h1{
+        font-size: 45px;
+    }
+    
+    #abas-config{
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .pagina div{
+        width: 300px;
+    }
+
+    #pontos-rodada > div{
+        margin-left: 70px;
+    }
+
+    .div-linha{
+        margin-left: 80px;
+    }
+
+    #tempoMax > div{
+        margin-left: 50px;
+    }
+
+    #tempoMax input{
+        width: 28px;
+        font-size: 16px;
+    }
+
+    h2{
+        font-size: 20px;
+    }
+
+    p{
+        font-size: 18px;
+    }
+
+    footer{
+        height: 130px;
+    }
+
+    button{
+        position: static;
+    }
+
+}
 
 

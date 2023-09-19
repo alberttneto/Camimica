@@ -38,3 +38,31 @@ footer{
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 1300px){
+
+    body{
+        background-image: none;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    div > input{
+        width: 40px;
+        font-size: 22px;
+    }
+
+    main{
+        padding-top: 50px;
+    }
+
+    main > div{
+        width: 300px;
+    }
+
+    p{
+        font-size: 25px;
+    }
+
+}

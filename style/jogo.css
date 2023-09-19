@@ -292,3 +292,85 @@ main > div{
 #fechar-modal-config:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 1100px) {
+    
+    main{
+        flex-flow: column-reverse;
+        height: 100%;
+    }
+
+    main > div:nth-child(1), main > div:nth-child(2){
+        border: solid 1px black;
+        padding: 30px;
+    }
+
+    p, button, #bt-pular{
+        font-size: 25px;
+    }
+
+    #palavra{
+        font-size: 45px;
+    }
+
+    #div-lateral-dir{
+        flex-flow: row;
+        justify-content: center;
+        padding-top: 0px;
+        margin: 20px;
+    }
+
+    #div-lateral-esq > div{
+        margin: 15px;
+    }
+
+    #div-lateral-esq span{
+        font-size: 30px;
+    }
+
+    #div-central > div{
+        margin: 15px;
+    }
+
+    #div-pulos{
+        width: 235px;
+    }
+
+    #div-pontuar{
+        width: 380px;
+        height: 450PX;
+    }
+    
+    #div-pontuar span{
+        font-size: 25px;
+    }
+
+    #vitoria{
+        width: 380px;
+        height: 600px;
+    }
+
+    #vitoria p, #vitoria span{
+        font-size: 25px;
+    }
+    
+    #vitoria-info{
+        margin: 30px 0px;
+        flex-flow: column;
+    }
+
+    #div-config{
+        width: 380px;
+        height: 750px;
+    }
+
+    #div-config input[type="radio"]{
+        transform: scale(0.5);
+    }
+
+
+    .ajuste-posicao{
+        padding: 0px;
+    }    
+
+}

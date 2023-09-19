@@ -56,3 +56,22 @@ footer{
 button{
     padding: 10px;
 }
+
+@media screen and (max-width: 1200px) {
+
+    body{
+        background-image: none;
+    }
+
+    h1{
+        font-size: 37px;
+    }
+
+    #forma-times{
+        width: 300px;
+    }
+
+    #forma-times > div > input{
+        width: 280px;
+    }
+}
