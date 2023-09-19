@@ -47,6 +47,12 @@ main > div{
     margin: 50px;
 }
 
+.info-palavra-class{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
 #palavra{
     background-color: black;
     color: #FFD93B;
@@ -309,11 +315,7 @@ main > div{
         font-size: 25px;
     }
 
-    #info-palavra{
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-    }
+
 
     #palavra{
         font-size: 35px;

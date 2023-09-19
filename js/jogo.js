@@ -348,10 +348,25 @@ fetchData(tiposPalavras).then((data) => {
         const pontoRodadaMax = document.querySelector('input[name="ptRodadaMx"]');
         const pontoRodadaMin = document.querySelector('input[name="ptRodadaMin"]');
         const tempoMax = document.querySelector('input[name="tempoMinutos"]').value + ":" + document.querySelector('input[name="tempoSegundos"]').value;
-        const qtdPulos = document.querySelector('input[name="qtdPulos"]');   
+        const qtdPulos = document.querySelector('input[name="qtdPulos"]');  
 
-        minutos = parseInt(tempoMax.split(":")[0]);
-        segundos = parseInt(tempoMax.split(":")[1]);  
+        var flagErros = 0;
+        tempo = tempoMax.split(":");
+        
+        if(pontoMax.value == "" || pontoMax.value == "0"){
+            alert("Ponto máximo tem que ser maior que zero.");
+            flagErros = 1;
+        } else if (pontoRodadaMax.value == "" || pontoRodadaMin.value == "" || parseInt(pontoRodadaMax.value) < parseInt(pontoRodadaMin.value) || pontoRodadaMax.value == "0" || pontoRodadaMin.value == "0"){
+            alert("Valores invalidos para min e max.");
+            flagErros = 1;
+        } else if ((tempo[0] == 0 && tempo[1] == 0) || tempo[0] == "" || tempo[1] == "" || parseInt(tempo[1]) > 60){
+            alert("Valores invalidos para minutos e segundos.");
+            flagErros = 1;
+        }
+        
+
+        minutos = parseInt(tempo[0]);
+        segundos = parseInt(tempo[1]);  
         campoTempo.textContent = minutos + ":" + segundos;
 
         configJSON.tempoMaximoAcerto = tempoMax;
@@ -365,7 +380,9 @@ fetchData(tiposPalavras).then((data) => {
         configJSON.qtdMaxPulos = qtdPulos.value;
         pulos = qtdPulos.value;
         campoPulos.innerHTML = pulos;
-        modalConfig.classList.add("ocultar");
+        if(flagErros == 0){
+            modalConfig.classList.add("ocultar");
+        }
     });
 
     opMute.addEventListener("click", () => {
@@ -387,6 +404,7 @@ fetchData(tiposPalavras).then((data) => {
 
     buttonMostrarPalavra.addEventListener("click", () => {
         infoPalavra.classList.remove("ocultar");
+        infoPalavra.classList.add("info-palavra-class");
         buttonMostrarPalavra.classList.add("ocultar");
     });
 

@@ -37,17 +37,31 @@ function montaTimes(){
 
     const nomeTime = document.getElementsByClassName("nome-time");
     const nomes = document.getElementsByClassName("nome-jogadores");
+    flagAlerta = 0;
 
     for (let i = 0; i < nomeTime.length; i++) {
 
-        var time = new Times(nomeTime[i].value);
+        if(nomeTime[i].value == "" && flagAlerta == 0){
+            alert("Inserir nome do time");
+            flagAlerta = 1;
+        }else{
+            var time = new Times(nomeTime[i].value);
+        }
         for (let j = i*qtdNomes; j < i*qtdNomes+qtdNomes; j++) {
-            time.pessoas.push(nomes[j].value);
+            if(nomes[j].value == "" && flagAlerta == 0){
+                alert("Inserir nome de todos os integrantes do time");
+                flagAlerta =1;
+            }else{
+                time.pessoas.push(nomes[j].value);
+            }
         }
         times.push(time);
     }
     
     const parametroConsulta = encodeURIComponent(JSON.stringify(times));
-    // window.location.href = `config.html?dados=${parametroConsulta}`;
+
+    if(flagAlerta == 0){
+        window.location.href = `config.html?dados=${parametroConsulta}`;
+    }
 };
 

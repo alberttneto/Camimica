@@ -19,7 +19,7 @@ h1{
 #forma-times{
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     padding: 30px;
     height: 350px;
@@ -70,7 +70,6 @@ button{
     #forma-times{
         width: 300px;
         height: 500px;
-        justify-content: start;
     }
 
     #forma-times > div > input{
