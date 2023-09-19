@@ -11,6 +11,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/jogo.css">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
 </head>
 <body>
 
@@ -63,14 +64,41 @@
             <div>
                 <div>
                     <i class="fa-regular fa-square-check fa-2xl" style="color: #00f01c;"></i>
-                    <p>Acertou!</p>
+                    <p style="color: #00f01c;">Acertou!</p>
                 </div>
                 <div>
                     <i class="fa-regular fa-circle-xmark fa-2xl" style="color: #ff0000;"></i>
-                    <p>Errou!</p>
+                    <p style="color: #ff0000;">Errou!</p>
+                </div>
+
+                <div class="ocultar">
+                    <i class="fa-solid fa-people-arrows fa-2xl" style="color: #552ec2;"></i>
+                    <p style="color: #552ec2;">Os outros times tentam</p>
                 </div>
             </div>
             <p>Proximo a jogar: <span id="proximo-jogador" class="destaque"></span></p>
+        </div>
+    </section>
+
+    <section class="modal-ap ocultar">
+        <div  class="modal-content">
+            <div id="info-palavra">
+                <p id="tipo-palavra"></p>
+                <p id="palavra"></p>
+                <p id="ponto-rodada"></p>
+            </div>
+    
+            <div>
+                <div>
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="tempo">00:00</span>
+                </div>
+    
+                <div>
+                    <button id="bt-iniciar" class="bt-iniciar-parar">Iniciar</button>
+                    <button id="bt-parar" class="bt-iniciar-parar ocultar">Parar</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -154,7 +182,7 @@
             </div>
         </div>
     </section>
-    
+
 </body>
 <script src="js/jogo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

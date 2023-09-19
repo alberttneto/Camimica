@@ -61,6 +61,7 @@ main > div{
     font-size: 58px;
     margin: 10px 0px;
     padding: 10px;
+    width: 600px;
 }
 
 #tipo-palavra{

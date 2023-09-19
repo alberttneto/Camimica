@@ -298,8 +298,7 @@ fetchData(tiposPalavras).then((data) => {
                 if(i != (indiceTime - 1 + qtdTimes)%qtdTimes){
                     timesJSON[i].pontos += pontos;
                     spanPontos[i].innerHTML = timesJSON[i].pontos
-                }
-                
+                }        
             }
         }
         modalPontuar.classList.add("ocultar");
@@ -335,7 +334,6 @@ fetchData(tiposPalavras).then((data) => {
             }
         });
     }
-
 
     opConfig.addEventListener("click", () => {
         modalConfig.classList.remove("ocultar");
