@@ -51,6 +51,7 @@ footer{
     div > input{
         width: 40px;
         font-size: 22px;
+        border: solid 3px black;
     }
 
     main{

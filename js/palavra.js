@@ -12,7 +12,12 @@ const armazenaPalavras = new Promise((resolve, reject) => {
         }
 
         resolve(palavras);
-        window.location.href = "times.html";
+
+        if(palavras == ""){
+            alert("Tem que marcar no minimo 1 opção.");
+        }else{
+            window.location.href = "times.html";
+        }
     });
 })
 

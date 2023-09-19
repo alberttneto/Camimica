@@ -46,8 +46,8 @@ function montaTimes(){
         }
         times.push(time);
     }
-
+    
     const parametroConsulta = encodeURIComponent(JSON.stringify(times));
-    window.location.href = `config.html?dados=${parametroConsulta}`;
+    // window.location.href = `config.html?dados=${parametroConsulta}`;
 };
 

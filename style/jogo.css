@@ -302,15 +302,22 @@ main > div{
 
     main > div:nth-child(1), main > div:nth-child(2){
         border: solid 1px black;
-        padding: 30px;
+        /* padding: 30px; */
     }
 
     p, button, #bt-pular{
         font-size: 25px;
     }
 
+    #info-palavra{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
     #palavra{
-        font-size: 45px;
+        font-size: 35px;
+        width: 365px;
     }
 
     #div-lateral-dir{
@@ -333,13 +340,13 @@ main > div{
     }
 
     #div-pulos{
-        width: 235px;
-        margin-left: 50px;
+        width: 100%;
+        margin: 30px 0px;
     }
 
     #div-pontuar{
-        width: 380px;
-        height: 450PX;
+        width: 350px;
+        height: 380PX;
     }
     
     #div-pontuar span{
@@ -347,8 +354,9 @@ main > div{
     }
 
     #vitoria{
-        width: 380px;
+        width: 350px;
         height: 600px;
+        padding: 50px 1px;
     }
 
     #vitoria p, #vitoria span{
@@ -361,8 +369,8 @@ main > div{
     }
 
     #div-config{
-        width: 380px;
-        height: 750px;
+        width: 350px;
+        height: 100%;
     }
 
     #div-config input[type="radio"]{

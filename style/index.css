@@ -79,6 +79,9 @@ button{
         width: 300px;
         height: 60%;
         border-radius: 33px;
+        padding-bottom: 30px;
+        justify-content: space-between;
+        margin: 250px;
     }
 
     .hexagon::before{
@@ -86,4 +89,5 @@ button{
         border-right: 150px solid transparent;
         bottom: 40px;
     }
+
 }
