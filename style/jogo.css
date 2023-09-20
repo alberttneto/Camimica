@@ -37,6 +37,15 @@ main > div{
     font-size: 40px;
 }
 
+#placar > div{
+    margin: 25px;
+    text-align: start;
+}
+
+.span-pontos{
+    color: rgb(251, 255, 12);
+}
+
 #div-central{
     display: flex;
     flex-flow: column;

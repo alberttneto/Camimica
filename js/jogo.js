@@ -404,6 +404,8 @@ fetchData(tiposPalavras).then((data) => {
         infoPalavra.classList.remove("ocultar");
         infoPalavra.classList.add("info-palavra-class");
         buttonMostrarPalavra.classList.add("ocultar");
+        btPulo.classList.remove("ocultar");
+        btIniciar.classList.remove("ocultar");
     });
 
 });

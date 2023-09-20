@@ -35,3 +35,19 @@ footer{
 button{
     padding: 10px;
 }
+
+@media screen and (max-width: 530px) {
+
+    main > div{
+        margin-left: 60px;
+    }
+
+    h1{
+        font-size: 36px;
+    }
+
+    p{
+        font-size: 26px;
+    }
+    
+}
