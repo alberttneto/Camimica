@@ -38,12 +38,17 @@ main > div{
 }
 
 #placar > div{
-    margin: 25px;
+    display: flex;
+    align-items: end;
+    border: solid 2px rgb(122, 122, 100);
+    padding: 20px;
+    margin: 10px;
     text-align: start;
 }
 
 .span-pontos{
-    color: rgb(251, 255, 12);
+    margin-left: 5px;
+    color: rgb(251, 255, 0);
 }
 
 #div-central{
@@ -324,8 +329,6 @@ main > div{
     p, button, #bt-pular{
         font-size: 25px;
     }
-
-
 
     #palavra{
         font-size: 35px;
