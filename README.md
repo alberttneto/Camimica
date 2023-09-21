@@ -35,6 +35,9 @@ Jogo de mimica feito com HTML, CSS e JAVASCRIPT.
 6. Tela de jogo:
 ![image](https://github.com/alberttneto/Camimica/assets/31115666/ca5e8800-1cc7-4508-b2e0-4cd48d130caa)
 
+Responsivo
+![image](https://github.com/alberttneto/Camimica/assets/31115666/161d5c7b-32d8-4c61-ae12-d94fa384d992)
+
 
 Esboço do Simulador  
 https://www.canva.com/design/DAFs4H6Esc8/OcevTzxn1ra1KkRMrSMcGQ/view?utm_content=DAFs4H6Esc8&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
