@@ -156,6 +156,12 @@ main > div{
     color:black;
 }
 
+#div-pontuar{
+    background-color: #FFD93B;
+    color: #000000;
+    border: solid 3px rgb(0, 0, 0);
+}
+
 #div-pontuar > div{
     display: flex;
     justify-content: center;
@@ -175,7 +181,7 @@ main > div{
 }
 
 .destaque{
-    color: blue;
+    color: rgb(5, 27, 3);
 }
 
 #vitoria{
@@ -286,15 +292,22 @@ main > div{
     margin: 10px;
 }
 
-#div-config input[type="radio"]{
+.ajuste-posicao input[type="radio"]{
     transform: scale(0.5);
 }
+
+#forma-pontuar p{
+    width: 300px;
+    text-align: start;
+}
+
+
 
 .ajuste-posicao{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 160px;
+    padding: 0px 120px;
 }
 
 #fechar-modal-config{
@@ -309,13 +322,9 @@ main > div{
     cursor: pointer;
 }
 
-#modal-outro-time-tenta ul{
-    list-style: none;
-}
-
 #outros-tentam{
     background-color: #FFD93B;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 
 #outros-tentam > div{
@@ -323,6 +332,7 @@ main > div{
 }
 
 #div-lista-times ul{
+    list-style: none;
     background-color: #000000;
     color: #FFD93B;
     border: solid 3px rgb(255, 255, 255);
@@ -425,11 +435,43 @@ main > div{
         height: 100%;
     }
 
-    #div-config input[type="radio"]{
-        transform: scale(0.5);
+    .ajuste-posicao input[type="radio"]{
+        transform: scale(0.6);
     }
 
     .ajuste-posicao{
         padding: 0px;
     }    
+
+    #outros-tentam{
+        width: 360px;
+    }
+
+    #palavra2{
+        width: 340px;
+        font-size: 35px;
+    }
+    
+    #div-lista-times{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lista-times p{
+        font-size: 18px;
+    }
+
+    #div-lista-times ul{
+        width: 310px;
+        margin: 20px 0px;
+        align-items: center;
+    }
+
+    #div-lista-times li{
+        width: 300px;
+        margin: 0px;
+        padding: 0px 15px;
+    }
 }

@@ -5,6 +5,8 @@ var timesJSON = JSON.parse(parametroTimes.get('times'));
 const configJSON = JSON.parse(parametroTimes.get('config'));
 const tiposPalavras = localStorage.getItem("listaPalavras");
 
+
+console.log(timesJSON);
 //Lendo arquivos com as palavras
 async function fetchData(palavras) {
     try {
@@ -92,19 +94,30 @@ for (let i = 0; i < qtdTimes; i++) {
 
     spanTime.innerHTML = timesJSON[i].nome + ": ";
     spanPontos.innerHTML = timesJSON[i].pontos;
+    spanPontos.setAttribute("name", timesJSON[i].nome);
     spanPontos.classList.add("span-pontos");
     div.appendChild(spanTime);
     div.appendChild(spanPontos);
     placar.appendChild(div);
 }
 
+// Alterando para forma de jogo 3
+const divErrou = document.getElementById("div-errou");
+const divOutrosTemtam = document.getElementById("div-OutrosTentam");
+
+if(configJSON.pontuaErrosAcertos == "chanceAdv"){
+    divErrou.classList.add("ocultar");
+    divOutrosTemtam.classList.remove("ocultar");
+}
+
 // Denificao de variaveis e constantes
-const iconTempo = document.querySelector(".fa-clock");
+const iconTempo = document.querySelectorAll(".fa-clock");
 const campoTempo = document.getElementById("tempo");
 const campoTempo2 = document.getElementById("tempo2");
 var tempo = configJSON.tempoMaximoAcerto.split(":");
 var minutos = parseInt(tempo[0]);
 var segundos = parseInt(tempo[1]);
+
 
 campoTempo.textContent = minutos + ":" + segundos;
 
@@ -117,7 +130,6 @@ const campoPulos = document.getElementById("qtd-pulos");
 const modalVencedor = document.getElementById("modal-vencedor");
 const audioTicTac = new Audio('audio/tictac.wav');
 const audioAlarm = new Audio('audio/alarm.wav');
-
 
 campoPulos.innerHTML = configJSON.qtdMaxPulos;
 
@@ -133,7 +145,6 @@ fetchData(tiposPalavras).then((data) => {
 
     // Cronometro
     function atualizarCronometro() {
-        iconTempo.classList.add("fa-spin");
         segundos--;
       
         if (segundos == 0 && minutos > 0) {
@@ -141,7 +152,12 @@ fetchData(tiposPalavras).then((data) => {
           minutos--;
     
         }else if (minutos == 0 && segundos == 0){
-            marcaPonto();
+            if(bt == 1){
+                marcaPonto();
+            }else if(bt == 2){
+                marcaPonto2();
+            }
+
             audioAlarm.play();
             setTimeout(() => {
                 audioAlarm.pause();
@@ -250,6 +266,7 @@ fetchData(tiposPalavras).then((data) => {
     btIniciar.addEventListener("click", () => {
         bt = 1;
         cronometro = setInterval(atualizarCronometro, 1000);
+        iconTempo[0].classList.add("fa-spin");
         btPulo.classList.add("ocultar");
         btIniciar.classList.add("ocultar");
         btParar.classList.remove("ocultar");
@@ -266,9 +283,9 @@ fetchData(tiposPalavras).then((data) => {
         campoTempo.textContent = parseInt(tempo[0]) + ":" + parseInt(tempo[1]);
         pulos = configJSON.qtdMaxPulos;
         campoPulos.innerHTML = configJSON.qtdMaxPulos;
-        iconTempo.classList.remove("fa-spin");
         nomeTimeJogou.innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].nome;
         nomeProximoJogador.innerHTML = timesJSON[(indiceTime + qtdTimes)%qtdTimes].pessoas[(indicePessoa + qtdPessoas)%qtdPessoas];
+        iconTempo[0].classList.remove("fa-spin");
         modalPontuar.classList.remove("ocultar");
         audioTicTac.pause();
     }
@@ -325,6 +342,11 @@ fetchData(tiposPalavras).then((data) => {
         document.getElementById("tipo-palavra2").innerHTML = campoTipoPalavra.innerHTML;
         document.getElementById("palavra2").innerHTML = campoPalavra.innerHTML;
         document.getElementById("ponto-rodada2").innerHTML = campoPontuacao.innerHTML;
+
+        modalPontuar.classList.add("ocultar");
+        btIniciar.classList.remove("ocultar");
+        btParar.classList.add("ocultar");
+        btPulo.classList.remove("ocultar");
     });
 
     // Após fim do jogo opção vai para novo jogo
@@ -406,6 +428,14 @@ fetchData(tiposPalavras).then((data) => {
         if(flagErros == 0){
             modalConfig.classList.add("ocultar");
         }
+
+        if(configJSON.pontuaErrosAcertos == "chanceAdv"){
+            divErrou.classList.add("ocultar");
+            divOutrosTemtam.classList.remove("ocultar");
+        }else{
+            divErrou.classList.remove("ocultar");
+            divOutrosTemtam.classList.add("ocultar");
+        }
     });
 
     // Configurações de audio
@@ -445,6 +475,7 @@ fetchData(tiposPalavras).then((data) => {
         bt = 2;
         minutos = 0;
         segundos = 30;
+        iconTempo[1].classList.add("fa-spin");
         campoTempo2.textContent = `${'0'+minutos}:${segundos}`;
         cronometro = setInterval(atualizarCronometro, 1000);
         btIniciar2.classList.add("ocultar");
@@ -456,32 +487,32 @@ fetchData(tiposPalavras).then((data) => {
         marcaPonto2();
     });
 
+    const divListaTimes = document.getElementById("div-lista-times");
+    const ul = document.getElementById("lista-times");
+
     function marcaPonto2(){
         clearInterval(cronometro);
-        campoTempo2.textContent = "00:00";
+        campoTempo2.textContent = "00:30";
         btParar2.classList.add("ocultar");
-
-        const divListaTimes = document.getElementById("div-lista-times");
-        const ul = document.getElementById("lista-times");
+        iconTempo[1].classList.remove("fa-spin");
+        audioTicTac.pause();
         
-        // for (let i = 0; i < qtdTimes; i++) {
+        for (let i = 0; i < qtdTimes; i++) {
             
-        //     if(timesJSON[i].nome != nomeTimeJogou.innerHTML){
-        //         const li = document.createElement("li");
-        //         const input = document.createElement("input");
-        //         input.setAttribute("type", "checkbox");
-        //         input.setAttribute("name", timesJSON[i].nome);
-        //         const p = document.createElement("p");
+            if(timesJSON[i].nome != nomeTimeJogou.innerHTML){
+                const li = document.createElement("li");
+                const input = document.createElement("input");
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("name", timesJSON[i].nome);
+                const p = document.createElement("p");
 
-        //         p.innerHTML = timesJSON[i].nome;
+                p.innerHTML = timesJSON[i].nome;
 
-        //         li.appendChild(input);
-        //         li.appendChild(p);
-        //         ul.appendChild(li);
-        //     }
-        // }
-
-
+                li.appendChild(input);
+                li.appendChild(p);
+                ul.appendChild(li);
+            }
+        }
 
         divListaTimes.classList.remove("ocultar");
     }
@@ -489,15 +520,31 @@ fetchData(tiposPalavras).then((data) => {
     btFecharOutroTimeTenta.addEventListener("click", () =>{
 
         const checkTimes = document.querySelectorAll('input[type="checkbox"]');
-        console.log(data);
-        console.log(checkTimes);
-        console.log(timesJSON);
-        for (const time of checkTimes) {
-            if(time.checked){
-                console.log(pontos);
-                console.log(timesJSON[time.name].pontos);
+        const spanTimes = placar.querySelectorAll(".span-pontos");
+        console.log(spanTimes);
+        for (const timeMarcado of checkTimes) {
+            if(timeMarcado.checked){
+
+                for (const i in timesJSON) {
+                    if (timesJSON[i].nome == timeMarcado.name){
+                        timesJSON[i].pontos += pontos;
+                        spanTimes[i].innerHTML = timesJSON[i].pontos;
+                    }
+                }
+
             }
         }
+
+        const timesRemover = ul.querySelectorAll("li");
+        console.log(timesRemover);
+        timesRemover.forEach((elemento) => {
+            elemento.parentNode.removeChild(elemento);
+        });
+
+        sorteiaPalavra();
+        divListaTimes.classList.add("ocultar");
+        modalOutroTimeTenta.classList.add("ocultar");
+        btIniciar2.classList.remove("ocultar");
     });
 
 });

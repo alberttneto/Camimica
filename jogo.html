@@ -61,17 +61,17 @@
             <p>O time <span id="time-jogou" class="destaque"></span> acertou a mimica?</p>
             <div>
                 <div>
-                    <i class="fa-regular fa-square-check fa-2xl" style="color: #00f01c;"></i>
-                    <p style="color: #00f01c;">Acertou!</p>
+                    <i class="fa-regular fa-square-check fa-2xl" style="color: #037c11;"></i>
+                    <p style="color: #037c11;">Acertou!</p>
                 </div>
-                <div>
+                <div id="div-errou">
                     <i class="fa-regular fa-circle-xmark fa-2xl" style="color: #ff0000;"></i>
                     <p style="color: #ff0000;">Errou!</p>
                 </div>
 
-                <div class="ocultar">
-                    <i class="fa-solid fa-people-arrows fa-2xl" style="color: #552ec2;"></i>
-                    <p style="color: #552ec2;">Os outros times tentam</p>
+                <div id="div-OutrosTentam" class="ocultar">
+                    <i class="fa-solid fa-people-arrows fa-2xl" style="color: #3106ca;"></i>
+                    <p style="color: #3106ca;">Vez do adversario</p>
                 </div>
             </div>
             <p>Proximo a jogar: <span id="proximo-jogador" class="destaque"></span></p>
@@ -87,7 +87,7 @@
             </div>
     
             <div>
-                <div>
+                <div id="div-tempo">
                     <i class="fa-regular fa-clock"></i>
                     <span id="tempo2">00:30</span>
                 </div>
@@ -101,14 +101,7 @@
             <div id="div-lista-times" class="ocultar">
                 <p>Quem marcou ponto: </p>
                 <ul id="lista-times">
-                    <!-- <li>
-                        <input type="checkbox">
-                        <p>Time azul</p>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <p>Time Vermelho</p>
-                    </li> -->
+
                 </ul>
                 <button id="bt-fechar-outro-time-tenta">Fechar</button>
             </div>
@@ -146,7 +139,7 @@
                 <div class="div-linha">
                     <div class="ajuste-posicao">
                         <p>Valor aleatório</p>
-                        <input type="radio" name="tipo-valor" id="valores-aleatorio" value="valorAlt" checked="true">
+                        <input type="radio" name="tipo-valor" id="valores-aleatorio" value="valorAlt" checked>
                     </div>
                     <div class="ajuste-posicao">
                         <p>Valor fixo</p>
@@ -175,6 +168,11 @@
                 <div class="div-linha ajuste-posicao">
                     <p>Pontos com erros e acertos</p>
                     <input type="radio" name="forma-pontuar" id="erros-acertos" value="erroAc">
+                </div>
+
+                <div class="div-linha ajuste-posicao">
+                    <p>Os times adversarios tentam acertar em 30 segundos</p>
+                    <input type="radio" name="forma-pontuar" id="chance-adversario" value="chanceAdv">
                 </div>
             </div>
             <div class="valor-numerico" id="tempoMax">
