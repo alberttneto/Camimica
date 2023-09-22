@@ -25,11 +25,11 @@
                 <p>Placar:</p>
             </div>
         </div>
-        <div id="div-central">
+        <div id="div-central" class="div-central">
             <button id="mostrar-palavra">Mostrar palavra</button>
             <div id="info-palavra" class="ocultar">
                 <p id="tipo-palavra"></p>
-                <p id="palavra"></p>
+                <p id="palavra" class="palavra"></p>
                 <p id="ponto-rodada"></p>
             </div>
 
@@ -46,7 +46,7 @@
 
                 <div>
                     <button id="bt-iniciar" class="bt-iniciar-parar ocultar">Iniciar</button>
-                    <button id="bt-parar" class="bt-iniciar-parar ocultar">Parar</button>
+                    <button id="bt-parar" class="bt-iniciar-parar bt-parar ocultar">Parar</button>
                 </div>
             </div>
         </div>
@@ -78,24 +78,39 @@
         </div>
     </section>
 
-    <section class="modal-ap ocultar">
-        <div  class="modal-content">
-            <div id="info-palavra">
-                <p id="tipo-palavra"></p>
-                <p title="Palavra" id="palavra"></p>
-                <p id="ponto-rodada"></p>
+    <section id="modal-outro-time-tenta" class="modal-ap ocultar">
+        <div id="outros-tentam"  class="modal-content div-central">
+            <div class="info-palavra-class">
+                <p id="tipo-palavra2"></p>
+                <p title="Palavra" id="palavra2" class="palavra"></p>
+                <p id="ponto-rodada2"></p>
             </div>
     
             <div>
                 <div>
                     <i class="fa-regular fa-clock"></i>
-                    <span id="tempo">00:00</span>
+                    <span id="tempo2">00:30</span>
                 </div>
     
                 <div>
-                    <button id="bt-iniciar" class="bt-iniciar-parar">Iniciar</button>
-                    <button id="bt-parar" class="bt-iniciar-parar ocultar">Parar</button>
+                    <button id="bt-iniciar2" class="bt-iniciar-parar">Iniciar</button>
+                    <button id="bt-parar2" class="bt-iniciar-parar bt-parar ocultar">Parar</button>
                 </div>
+            </div>
+
+            <div id="div-lista-times" class="ocultar">
+                <p>Quem marcou ponto: </p>
+                <ul id="lista-times">
+                    <!-- <li>
+                        <input type="checkbox">
+                        <p>Time azul</p>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <p>Time Vermelho</p>
+                    </li> -->
+                </ul>
+                <button id="bt-fechar-outro-time-tenta">Fechar</button>
             </div>
         </div>
     </section>

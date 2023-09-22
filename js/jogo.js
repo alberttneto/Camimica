@@ -48,8 +48,6 @@ opMute.addEventListener("mouseleave", () => {
     iconMute.classList.remove("fa-flip");
 });
 
-
-
 // Função que retorna a ordem dos times de forma aleatoria;
 const qtdPessoas = timesJSON[0].pessoas.length;
 const qtdTimes = timesJSON.length;
@@ -100,10 +98,10 @@ for (let i = 0; i < qtdTimes; i++) {
     placar.appendChild(div);
 }
 
-
 // Denificao de variaveis e constantes
 const iconTempo = document.querySelector(".fa-clock");
 const campoTempo = document.getElementById("tempo");
+const campoTempo2 = document.getElementById("tempo2");
 var tempo = configJSON.tempoMaximoAcerto.split(":");
 var minutos = parseInt(tempo[0]);
 var segundos = parseInt(tempo[1]);
@@ -128,6 +126,7 @@ var flagPulo = 0;
 var indiceTime = 0;
 var indicePessoa = 0;
 var pontos = 0;
+var bt = 1;
 let cronometro;
 
 fetchData(tiposPalavras).then((data) => {
@@ -152,8 +151,12 @@ fetchData(tiposPalavras).then((data) => {
       
         const segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
         const minutosFormatados = minutos < 10 ? "0" + minutos : minutos;
-      
-        campoTempo.textContent = `${minutosFormatados}:${segundosFormatados}`;
+        
+        if(bt == 1){
+            campoTempo.textContent = `${minutosFormatados}:${segundosFormatados}`;
+        } else if(bt == 2){
+            campoTempo2.textContent = `${minutosFormatados}:${segundosFormatados}`;
+        }
     }
 
     //Gera pontuação da mimica na rodada
@@ -199,6 +202,7 @@ fetchData(tiposPalavras).then((data) => {
             }
         }   
          
+        // Gera sorteio de palavra
         indiceTipo = Math.floor(Math.random() * data.length);
         
         tipoPalavra = Object.keys(data[indiceTipo])[0]
@@ -215,11 +219,13 @@ fetchData(tiposPalavras).then((data) => {
 
     sorteiaPalavra();
     
+
     const btPulo = document.getElementById("bt-pular");
     const btIniciar = document.getElementById("bt-iniciar");
     const btParar = document.getElementById("bt-parar");
     const iconAcertou = document.querySelector(".fa-square-check");
     const iconErrou = document.querySelector(".fa-circle-xmark");
+    const iconOutrosTentam = document.querySelector(".fa-people-arrows");
     const nomeTimeJogou = document.getElementById("time-jogou");
     const nomeProximoJogador = document.getElementById("proximo-jogador");
     const btReiniciar = document.getElementById("reiniciar");
@@ -227,6 +233,7 @@ fetchData(tiposPalavras).then((data) => {
     const fecharModalConfig = document.getElementById("fechar-modal-config");
     const modalPontuar = document.getElementById("modal-pontuar");
     const modalConfig = document.getElementById("modal-config");
+    const modalOutroTimeTenta = document.getElementById("modal-outro-time-tenta");
     const buttonMostrarPalavra = document.getElementById("mostrar-palavra");
     const infoPalavra = document.getElementById("info-palavra");
 
@@ -241,6 +248,7 @@ fetchData(tiposPalavras).then((data) => {
     })
 
     btIniciar.addEventListener("click", () => {
+        bt = 1;
         cronometro = setInterval(atualizarCronometro, 1000);
         btPulo.classList.add("ocultar");
         btIniciar.classList.add("ocultar");
@@ -250,7 +258,6 @@ fetchData(tiposPalavras).then((data) => {
 
     btParar.addEventListener("click", () => {
         marcaPonto();
-
     });
 
     // Função recebe informação de qual time pontuou e salva ponto
@@ -281,6 +288,7 @@ fetchData(tiposPalavras).then((data) => {
         return flagGanhador;
     }
 
+    //Marca pontos se Time da rodada acertou
     iconAcertou.addEventListener("click", () => {
         timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos += pontos;
         spanPontos[(indiceTime - 1 + qtdTimes)%qtdTimes].innerHTML = timesJSON[(indiceTime - 1 + qtdTimes)%qtdTimes].pontos;
@@ -291,6 +299,7 @@ fetchData(tiposPalavras).then((data) => {
         sorteiaPalavra();
     });
 
+    // Nova rodada se time errou
     iconErrou.addEventListener("click", () => {
         if(configJSON.pontuaErrosAcertos == "erroAc"){
             for (let i = 0; i < qtdTimes; i++) {
@@ -308,10 +317,22 @@ fetchData(tiposPalavras).then((data) => {
         sorteiaPalavra();
     });
 
+    // Modalidade 3 opção de times adversarios tentarem acertar
+    iconOutrosTentam.addEventListener("click", () => {
+
+        modalOutroTimeTenta.classList.remove("ocultar");
+
+        document.getElementById("tipo-palavra2").innerHTML = campoTipoPalavra.innerHTML;
+        document.getElementById("palavra2").innerHTML = campoPalavra.innerHTML;
+        document.getElementById("ponto-rodada2").innerHTML = campoPontuacao.innerHTML;
+    });
+
+    // Após fim do jogo opção vai para novo jogo
     btNovoJogo.addEventListener("click", () => {
         window.location.href = "index.html"
     });
 
+    // Após fim de jogo reinicia jogo com mesmas configurações 
     btReiniciar.addEventListener("click", () => {
         for (let i = 0; i < qtdTimes; i++) {
             timesJSON[i].pontos = 0;
@@ -320,11 +341,17 @@ fetchData(tiposPalavras).then((data) => {
         modalVencedor.classList.add("ocultar");
     });
 
+    // Configurações após iniciar o jogo
+    opConfig.addEventListener("click", () => {
+        modalConfig.classList.remove("ocultar");
+    });
+
     const pontoRodada = document.getElementsByName("tipo-valor");
 
     for (const op of pontoRodada) {
         op.addEventListener("change", () => {
             const min = document.getElementById("ptRodadaMin");
+            
             if(op.value == "valorFixo"){
                 min.disabled = true;
                 configJSON.pontosRodadaAleatorio = op.value
@@ -334,10 +361,6 @@ fetchData(tiposPalavras).then((data) => {
             }
         });
     }
-
-    opConfig.addEventListener("click", () => {
-        modalConfig.classList.remove("ocultar");
-    });
     
     fecharModalConfig.addEventListener("click", () => {
 
@@ -352,9 +375,11 @@ fetchData(tiposPalavras).then((data) => {
         tempo = tempoMax.split(":");
         
         if(pontoMax.value == "" || pontoMax.value == "0"){
+
             alert("Ponto máximo tem que ser maior que zero.");
             flagErros = 1;
         } else if (pontoRodadaMax.value == "" || pontoRodadaMin.value == "" || parseInt(pontoRodadaMax.value) < parseInt(pontoRodadaMin.value) || pontoRodadaMax.value == "0" || pontoRodadaMin.value == "0"){
+
             alert("Valores invalidos para min e max.");
             flagErros = 1;
         } else if ((tempo[0] == 0 && tempo[1] == 0) || tempo[0] == "" || tempo[1] == "" || parseInt(tempo[1]) > 60){
@@ -370,7 +395,6 @@ fetchData(tiposPalavras).then((data) => {
         configJSON.tempoMaximoAcerto = tempoMax;
         configJSON.pontuaErrosAcertos = tipoPontuacao.value;
         configJSON.pontoMaximo = pontoMax.value;
-
         configJSON.pontosPorRodadaMin = pontoRodadaMin.value;
         configJSON.pontosPorRodadaMax = pontoRodadaMax.value;
         geraPontuaçãoPalavra();
@@ -378,11 +402,13 @@ fetchData(tiposPalavras).then((data) => {
         configJSON.qtdMaxPulos = qtdPulos.value;
         pulos = qtdPulos.value;
         campoPulos.innerHTML = pulos;
+
         if(flagErros == 0){
             modalConfig.classList.add("ocultar");
         }
     });
 
+    // Configurações de audio
     opMute.addEventListener("click", () => {
 
         if(iconMute.classList.contains("fa-volume-high")){
@@ -393,6 +419,7 @@ fetchData(tiposPalavras).then((data) => {
             iconMute.classList.add("fa-volume-high");
         }
         audioTicTac.muted = !audioTicTac.muted;
+        audioAlarm.muted = !audioAlarm.muted;
     });
 
     audioTicTac.addEventListener('ended', function() {
@@ -400,12 +427,77 @@ fetchData(tiposPalavras).then((data) => {
         audioTicTac.play(); // Inicie a reprodução novamente
     });
 
+    //Botão mostra info palavra quando estiver pronto para iniciar o jogo.
     buttonMostrarPalavra.addEventListener("click", () => {
         infoPalavra.classList.remove("ocultar");
         infoPalavra.classList.add("info-palavra-class");
         buttonMostrarPalavra.classList.add("ocultar");
         btPulo.classList.remove("ocultar");
         btIniciar.classList.remove("ocultar");
+    });
+
+    //Definindo informações modal segunda chance de acerto.
+    const btIniciar2 = document.getElementById("bt-iniciar2");
+    const btParar2 = document.getElementById("bt-parar2");
+    const btFecharOutroTimeTenta = document.getElementById("bt-fechar-outro-time-tenta");
+
+    btIniciar2.addEventListener("click", () => {
+        bt = 2;
+        minutos = 0;
+        segundos = 30;
+        campoTempo2.textContent = `${'0'+minutos}:${segundos}`;
+        cronometro = setInterval(atualizarCronometro, 1000);
+        btIniciar2.classList.add("ocultar");
+        btParar2.classList.remove("ocultar");
+        audioTicTac.play();
+    });
+
+    btParar2.addEventListener("click", () => {
+        marcaPonto2();
+    });
+
+    function marcaPonto2(){
+        clearInterval(cronometro);
+        campoTempo2.textContent = "00:00";
+        btParar2.classList.add("ocultar");
+
+        const divListaTimes = document.getElementById("div-lista-times");
+        const ul = document.getElementById("lista-times");
+        
+        // for (let i = 0; i < qtdTimes; i++) {
+            
+        //     if(timesJSON[i].nome != nomeTimeJogou.innerHTML){
+        //         const li = document.createElement("li");
+        //         const input = document.createElement("input");
+        //         input.setAttribute("type", "checkbox");
+        //         input.setAttribute("name", timesJSON[i].nome);
+        //         const p = document.createElement("p");
+
+        //         p.innerHTML = timesJSON[i].nome;
+
+        //         li.appendChild(input);
+        //         li.appendChild(p);
+        //         ul.appendChild(li);
+        //     }
+        // }
+
+
+
+        divListaTimes.classList.remove("ocultar");
+    }
+
+    btFecharOutroTimeTenta.addEventListener("click", () =>{
+
+        const checkTimes = document.querySelectorAll('input[type="checkbox"]');
+        console.log(data);
+        console.log(checkTimes);
+        console.log(timesJSON);
+        for (const time of checkTimes) {
+            if(time.checked){
+                console.log(pontos);
+                console.log(timesJSON[time.name].pontos);
+            }
+        }
     });
 
 });

@@ -51,13 +51,13 @@ main > div{
     color: rgb(251, 255, 0);
 }
 
-#div-central{
+.div-central{
     display: flex;
     flex-flow: column;
     justify-content: center;
 }
 
-#div-central > div{
+.div-central > div{
     margin: 50px;
 }
 
@@ -67,7 +67,7 @@ main > div{
     align-items: center;
 }
 
-#palavra{
+.palavra{
     background-color: black;
     color: #FFD93B;
     border-radius: 20px;
@@ -97,11 +97,6 @@ main > div{
     border-radius: 20px;
     margin-right: 5px;
     padding: 0;
-}
-
-.bt-pular-off{
-    background-color: #e7d384;
-    color: red;
 }
 
 #div-lateral-dir{
@@ -134,7 +129,7 @@ main > div{
     width: 200px;
 }
 
-#bt-parar{
+.bt-parar{
     background-color: red;
     color: aliceblue;
 }
@@ -314,6 +309,49 @@ main > div{
     cursor: pointer;
 }
 
+#modal-outro-time-tenta ul{
+    list-style: none;
+}
+
+#outros-tentam{
+    background-color: #FFD93B;
+    margin-top: 20px;
+}
+
+#outros-tentam > div{
+    margin: 20px;
+}
+
+#div-lista-times ul{
+    background-color: #000000;
+    color: #FFD93B;
+    border: solid 3px rgb(255, 255, 255);
+    border-radius: 5px;
+
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 500px;
+    margin: 20px auto;
+    padding: 0px;
+}
+
+#div-lista-times li{
+    display: flex;
+    flex-flow: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin-left: 40px;
+    padding: 0px 50px;
+}
+
+#div-lista-times p{
+    font-size: 25px;
+    margin: 0px 20px;
+    text-align: center;
+}
+
 @media screen and (max-width: 1100px) {
     
     main{
@@ -323,14 +361,13 @@ main > div{
 
     main > div:nth-child(1), main > div:nth-child(2){
         border: solid 1px black;
-        /* padding: 30px; */
     }
 
     p, button, #bt-pular{
         font-size: 25px;
     }
 
-    #palavra{
+    .palavra{
         font-size: 35px;
         width: 365px;
     }
@@ -350,7 +387,7 @@ main > div{
         font-size: 30px;
     }
 
-    #div-central > div{
+    .div-central > div{
         margin: 15px;
     }
 
@@ -392,9 +429,7 @@ main > div{
         transform: scale(0.5);
     }
 
-
     .ajuste-posicao{
         padding: 0px;
     }    
-
 }

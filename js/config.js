@@ -5,7 +5,7 @@ const timesJSON = parametroTimes.get('dados');
 const pontoRodada = document.getElementsByName("tipo-valor");
 
 // Desativa terceira forma de pontuar até que seja implementado.
-document.getElementById("chance-adversario").disabled = true;
+// document.getElementById("chance-adversario").disabled = true;
 
 
 for (const op of pontoRodada) {
