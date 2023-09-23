@@ -292,7 +292,7 @@ main > div{
     margin: 10px;
 }
 
-.ajuste-posicao input[type="radio"]{
+#div-config input[type="radio"]{
     transform: scale(0.5);
 }
 
@@ -373,6 +373,10 @@ main > div{
         border: solid 1px black;
     }
 
+    #placar div span{
+        font-size: 22px;
+    }
+
     p, button, #bt-pular{
         font-size: 25px;
     }
@@ -408,7 +412,7 @@ main > div{
 
     #div-pontuar{
         width: 350px;
-        height: 380PX;
+        height: 400PX;
     }
     
     #div-pontuar span{
@@ -435,7 +439,7 @@ main > div{
         height: 100%;
     }
 
-    .ajuste-posicao input[type="radio"]{
+    #div-config input[type="radio"]{
         transform: scale(0.6);
     }
 
@@ -466,7 +470,7 @@ main > div{
     #div-lista-times ul{
         width: 310px;
         margin: 20px 0px;
-        align-items: center;
+        /* align-items: center; */
     }
 
     #div-lista-times li{

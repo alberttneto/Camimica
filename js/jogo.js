@@ -514,7 +514,7 @@ fetchData(tiposPalavras).then((data) => {
             }
         }
 
-        divListaTimes.classList.remove("ocultar");
+        divListaTimes.removeAttribute("hidden");
     }
 
     btFecharOutroTimeTenta.addEventListener("click", () =>{
@@ -542,7 +542,7 @@ fetchData(tiposPalavras).then((data) => {
         });
 
         sorteiaPalavra();
-        divListaTimes.classList.add("ocultar");
+        divListaTimes.setAttribute("hidden", "true");
         modalOutroTimeTenta.classList.add("ocultar");
         btIniciar2.classList.remove("ocultar");
     });
