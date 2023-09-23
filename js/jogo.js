@@ -77,6 +77,19 @@ function alteraOrdemJogadores(timesJSON){
     timesJSON[0].pessoas = novoTime1;
     timesJSON[1].pessoas = novoTime2;
 
+    let indiceTime1 = 0;
+    let indiceTime2 = 0;
+
+    while(indiceTime1 == indiceTime2){
+        indiceTime1 = Math.floor(Math.random() * qtdTimes);
+        indiceTime2 = Math.floor(Math.random() * qtdTimes);
+        console.log("indice1:" + indiceTime1);
+        console.log("indice2:" + indiceTime2);
+    }
+
+
+    [timesJSON[indiceTime1], timesJSON[indiceTime2]] = [timesJSON[indiceTime2], timesJSON[indiceTime1]];
+
     return timesJSON;
 }
 
