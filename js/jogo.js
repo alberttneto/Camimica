@@ -87,7 +87,6 @@ function alteraOrdemJogadores(timesJSON){
         console.log("indice2:" + indiceTime2);
     }
 
-
     [timesJSON[indiceTime1], timesJSON[indiceTime2]] = [timesJSON[indiceTime2], timesJSON[indiceTime1]];
 
     return timesJSON;
