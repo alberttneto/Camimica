@@ -167,6 +167,7 @@ fetchData(tiposPalavras).then((data) => {
             if(bt == 1){
                 marcaPonto();
             }else if(bt == 2){
+                console.log("entrou no 2");
                 marcaPonto2();
             }
 
