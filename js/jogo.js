@@ -5,8 +5,6 @@ var timesJSON = JSON.parse(parametroTimes.get('times'));
 const configJSON = JSON.parse(parametroTimes.get('config'));
 const tiposPalavras = localStorage.getItem("listaPalavras");
 
-
-console.log(timesJSON);
 //Lendo arquivos com as palavras
 async function fetchData(palavras) {
     try {
@@ -83,8 +81,6 @@ function alteraOrdemJogadores(timesJSON){
     while(indiceTime1 == indiceTime2){
         indiceTime1 = Math.floor(Math.random() * qtdTimes);
         indiceTime2 = Math.floor(Math.random() * qtdTimes);
-        console.log("indice1:" + indiceTime1);
-        console.log("indice2:" + indiceTime2);
     }
 
     [timesJSON[indiceTime1], timesJSON[indiceTime2]] = [timesJSON[indiceTime2], timesJSON[indiceTime1]];
@@ -142,6 +138,10 @@ const campoPulos = document.getElementById("qtd-pulos");
 const modalVencedor = document.getElementById("modal-vencedor");
 const audioTicTac = new Audio('audio/tictac.wav');
 const audioAlarm = new Audio('audio/alarm.wav');
+const btPulo = document.getElementById("bt-pular");
+const btIniciar = document.getElementById("bt-iniciar");
+const buttonMostrarPalavra = document.getElementById("mostrar-palavra");
+const infoPalavra = document.getElementById("info-palavra");
 
 campoPulos.innerHTML = configJSON.qtdMaxPulos;
 
@@ -212,6 +212,11 @@ fetchData(tiposPalavras).then((data) => {
 
         if(!flagPulo){
 
+            infoPalavra.classList.add("ocultar");
+            infoPalavra.classList.remove("info-palavra-class");
+            buttonMostrarPalavra.classList.remove("ocultar");
+            btPulo.classList.add("ocultar");
+            btIniciar.classList.add("ocultar");
             minutos = parseInt(tempo[0]);
             segundos = parseInt(tempo[1]);
 
@@ -247,9 +252,6 @@ fetchData(tiposPalavras).then((data) => {
 
     sorteiaPalavra();
     
-
-    const btPulo = document.getElementById("bt-pular");
-    const btIniciar = document.getElementById("bt-iniciar");
     const btParar = document.getElementById("bt-parar");
     const iconAcertou = document.querySelector(".fa-square-check");
     const iconErrou = document.querySelector(".fa-circle-xmark");
@@ -262,8 +264,6 @@ fetchData(tiposPalavras).then((data) => {
     const modalPontuar = document.getElementById("modal-pontuar");
     const modalConfig = document.getElementById("modal-config");
     const modalOutroTimeTenta = document.getElementById("modal-outro-time-tenta");
-    const buttonMostrarPalavra = document.getElementById("mostrar-palavra");
-    const infoPalavra = document.getElementById("info-palavra");
 
     btPulo.addEventListener("click", () => {
         pulos--;
@@ -533,7 +533,6 @@ fetchData(tiposPalavras).then((data) => {
 
         const checkTimes = document.querySelectorAll('input[type="checkbox"]');
         const spanTimes = placar.querySelectorAll(".span-pontos");
-        console.log(spanTimes);
         for (const timeMarcado of checkTimes) {
             if(timeMarcado.checked){
 
@@ -548,7 +547,6 @@ fetchData(tiposPalavras).then((data) => {
         }
 
         const timesRemover = ul.querySelectorAll("li");
-        console.log(timesRemover);
         timesRemover.forEach((elemento) => {
             elemento.parentNode.removeChild(elemento);
         });

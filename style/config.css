@@ -6,7 +6,7 @@ main{
     display: flex;
     align-items: center;
     flex-flow: column;
-    height: 100vh;
+    height: 800px;
 }
 
 h1{
@@ -116,6 +116,7 @@ input[type="number"]{
 }
 
 footer{
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,8 +124,6 @@ footer{
 
 button{
     text-align: center;
-    position: relative;
-    bottom: 50px;
     width: 150px;
     height: 100;
 }
@@ -210,11 +209,6 @@ button:hover{
     footer{
         height: 130px;
     }
-
-    button{
-        position: static;
-    }
-
 }
 
 
