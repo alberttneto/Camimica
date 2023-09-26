@@ -11,6 +11,7 @@ body{
     background-color: #FFD93B;
     background-image: url('../img/background-padrao.png');
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
