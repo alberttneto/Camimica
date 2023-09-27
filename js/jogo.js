@@ -3,7 +3,7 @@
 const parametroTimes = new URLSearchParams(window.location.search);
 var timesJSON = JSON.parse(parametroTimes.get('times'));
 const configJSON = JSON.parse(parametroTimes.get('config'));
-const tiposPalavras = localStorage.getItem("listaPalavras");
+const tiposPalavras = sessionStorage.getItem("listaPalavras");
 
 //Lendo arquivos com as palavras
 async function fetchData(palavras) {

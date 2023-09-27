@@ -23,5 +23,5 @@ const armazenaPalavras = new Promise((resolve, reject) => {
 
 
 armazenaPalavras.then((dados) =>{
-    localStorage.setItem("listaPalavras", dados);
+    sessionStorage.setItem("listaPalavras", dados);
 })
