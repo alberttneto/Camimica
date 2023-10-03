@@ -39,9 +39,9 @@ Responsivo
 ![image](https://github.com/alberttneto/Camimica/assets/31115666/161d5c7b-32d8-4c61-ae12-d94fa384d992)
 
 
-Esboço do Simulador  
+Esboço Camimica  
 https://www.canva.com/design/DAFs4H6Esc8/OcevTzxn1ra1KkRMrSMcGQ/view?utm_content=DAFs4H6Esc8&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 
-Simulador MT  
+Camimica
 https://alberttneto.github.io/Camimica/
 
