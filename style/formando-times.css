@@ -50,6 +50,8 @@ h1{
 
 button{
     padding: 10px;
+    position: relative;
+    top: 30px;
 }
 
 @media screen and (max-width: 1200px) {
