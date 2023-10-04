@@ -7,7 +7,7 @@ main{
     justify-content: center;
     align-items: center;
     flex-flow: column;
-    margin: 50px;
+    height: 100vh;
 }
 
 h1{
@@ -15,7 +15,7 @@ h1{
     margin-bottom: 50px;
 }
 
-main > div{
+main > div > div{
     display: flex;
     margin: 20px;
     align-items: center;
@@ -23,43 +23,39 @@ main > div{
     width: 400px;
 }
 
-div > p{
+div > div > p{
     width: auto;
     text-align: center;
 }
 
-div > input{
+div > div > input{
     width: 80px;
     text-align: center;
     margin-left: 20px;
 }
 
-footer{
-    display: flex;
-    justify-content: center;
+button{
+    margin-top: 50px;
 }
 
 @media screen and (max-width: 1300px){
 
     body{
         background-image: none;
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-    }
-
-    div > input{
-        width: 40px;
-        font-size: 22px;
-        border: solid 3px black;
-    }
-
-    main{
-        padding-top: 50px;
     }
 
     main > div{
+        height: 300px;
+    }
+
+    main > div > div{
         width: 300px;
+    }
+
+    div > div > input{
+        width: 40px;
+        font-size: 22px;
+        border: solid 3px black;
     }
 
     h1{
@@ -68,6 +64,11 @@ footer{
 
     p{
         font-size: 25px;
+    }
+
+    button{
+        position: relative;
+        bottom: 20px;
     }
 
 }
