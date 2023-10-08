@@ -374,10 +374,6 @@ main > div{
         height: 100%;
         margin-top: 5px;
     }
-/* 
-    main > div:nth-child(1), main > div:nth-child(2){
-        border: solid 1px black;
-    } */
 
     #placar div span{
         font-size: 22px;
