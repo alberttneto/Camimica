@@ -11,6 +11,7 @@ for (let index = 0; index < qtdTimes; index++) {
     const inputTime = document.createElement("input");
     inputTime.classList.add("nome-time");
     inputTime.setAttribute("placeholder", "Nome do Time " + (index+1));
+    inputTime.setAttribute("maxlength", "15");
     div.appendChild(inputTime);
 
     for (let index = 0; index < qtdPessoas; index++) {
@@ -18,6 +19,7 @@ for (let index = 0; index < qtdTimes; index++) {
         const input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("placeholder", "Nome Jogador " + (index+1));
+        input.setAttribute("maxlength", "15");
         input.classList.add("nome-jogadores");
         div.appendChild(input);
     }

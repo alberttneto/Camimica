@@ -218,7 +218,7 @@ main > div{
 }
 
 #vitoria i{
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 #vitoria-img{
@@ -426,8 +426,8 @@ main > div{
     }
 
     #vitoria{
-        width: 350px;
-        height: 600px;
+        width: 360px;
+        height: 700px;
         padding: 50px 1px;
     }
 
@@ -450,6 +450,7 @@ main > div{
     }    
 
     #outros-tentam{
+        justify-content: start;
         width: 360px;
     }
 
@@ -478,5 +479,20 @@ main > div{
         width: 300px;
         margin: 0px;
         padding: 0px 15px;
+    }
+}
+
+@media screen and (max-height: 780px){
+
+    #vitoria-info > #botoes{
+        flex-flow: row;
+    }
+
+    #botoes button{
+        width: 120px;
+    }
+
+    #vitoria{
+        height: 550px;
     }
 }
