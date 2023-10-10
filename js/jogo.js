@@ -558,6 +558,6 @@ fetchData(tiposPalavras).then((data) => {
         btIniciar2.classList.remove("ocultar");
     });
 
+    
 });
-
 
