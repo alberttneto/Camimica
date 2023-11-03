@@ -28,15 +28,15 @@ for (let index = 0; index < qtdTimes; index++) {
 }
 
 
-var times = [];
-var qtdNomes = parseInt(qtdPessoas);
 
 
 const prosseguir = document.getElementById("prosseguir");
 
 
 function montaTimes(){
-
+    
+    let times = [];
+    let qtdNomes = parseInt(qtdPessoas);
     const nomeTime = document.getElementsByClassName("nome-time");
     const nomes = document.getElementsByClassName("nome-jogadores");
     flagAlerta = 0;
