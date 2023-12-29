@@ -1,4 +1,4 @@
-# SimuladorMT
+# CAMIMICA
 Jogo de mimica feito com HTML, CSS e JAVASCRIPT. 
 
 1. Tela inicial:
