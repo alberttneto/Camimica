@@ -46,11 +46,11 @@ input[type="range"]{
 }
 
 input[type="range"]::-moz-range-progress {
-    background-color: #3498db;
+    background-color: #191c1f;
 }
 
 input[type="range"]::-webkit-progress-value {
-    background-color: #3498db;
+    background-color: #191c1f;
 }
 
 button{
