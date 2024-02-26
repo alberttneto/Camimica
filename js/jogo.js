@@ -557,7 +557,12 @@ fetchData(tiposPalavras).then((data) => {
         modalOutroTimeTenta.classList.add("ocultar");
         btIniciar2.classList.remove("ocultar");
     });
-
-    
 });
 
+// Pergunte ao usuário se ele deseja sair da página
+window.addEventListener('beforeunload', function(event) {
+
+    var confirmationMessage = 'Tem certeza que deseja sair?';
+    event.returnValue = confirmationMessage;
+    return confirmationMessage;
+});
